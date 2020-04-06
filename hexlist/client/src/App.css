@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   color: #F7F7F2;
   background-color: #F7F7F2;
 }
@@ -13,6 +12,12 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.titleImage {
+  height: 50px;
+  width: 50px;
+  flex: 0 0 auto;
 }
 
 .App-link {
