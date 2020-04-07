@@ -8,9 +8,7 @@ class TitleText extends Component {
 render() {
     return (
       <div>
-            <Flex flexDirection="column" container width="750px">
-                <h2>{this.props.title}</h2>
-            </Flex>
+          <h2>{this.props.title}</h2>
       </div>
     );
   }
