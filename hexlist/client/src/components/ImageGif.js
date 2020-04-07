@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import './css/ImageGif.css';
+import placeholder from './images/700.png'
 
 const media = {
     'backgroundColor': '#424B54',
     'width': '50rem',
     'height': '80vh',
-    'marginRight': '50px'
-  } // 1000 and 80
+    'marginRight': '50px',
+  }
+
+
 
 class ImageGif extends Component {
   
 render() {
     return (
       <div>
-          <div style={media}></div>
+          <div className="media1"><img src={placeholder}></img></div>
       </div>
     );
   }
