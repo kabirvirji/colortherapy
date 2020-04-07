@@ -14,13 +14,13 @@ render() {
       <div>
           <Flex flexDirection="column" container width="400px">
             <Flex flexDirection="row" container width="400px">
-                <img className="logoImage" src={one}></img><p>take our color calibration quiz</p>
+                <p><strong>1)</strong> Take our unique color quiz</p>
             </Flex>
             <Flex flexDirection="row" container width="400px">
-                <img className="logoImage" src={two}></img><p>pick colors based on your mood</p>
+                <p><strong>2)</strong> Choose your colors for today</p>
             </Flex>
             <Flex flexDirection="row" container width="400px">
-                <img className="logoImage" src={three}></img><p>generate your personalized playlist</p>
+                <p><strong>3)</strong> Generate a personalized playlist</p>
             </Flex>
           </Flex>
       </div>

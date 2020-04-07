@@ -6,6 +6,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #F7F7F2;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  animation: changeColor ease;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-fill-mode: both;
+}
+
+@keyframes changeColor {
+  0% {
+    background-color:#F3E8EE;
+  }
+  
+  25% {
+    background-color: #F7F7F2;
+  }
+  
+  50% {
+    background-color: #FFE8D4;
+  }
+
+  100% {
+    background-color:#F3E8EE;
+  }
 }
 
 code {

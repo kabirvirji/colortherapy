@@ -8,7 +8,7 @@ render() {
     return (
       <div>
         <header >
-            <h1 className="Header-text"><a href="/">#hexlist</a></h1>
+            <h1 className="Header-text"><a href="/">Color Therapy</a></h1>
         </header>
       </div>
     );
