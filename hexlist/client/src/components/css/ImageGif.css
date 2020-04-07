@@ -1,0 +1,24 @@
+.media1 {
+    background-color: '#424B54';
+    width: 50rem;
+    height: 80vh;
+    margin-right: 2em;
+  }
+
+  @media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    .media1 {
+        display: none;
+      }
+}
+
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 2) { 
+  .media1 {
+      display: none;
+    }
+}

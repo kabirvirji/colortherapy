@@ -1,5 +1,33 @@
 h2 {
     color: #424B54;
-    font-size: 65px;
+    font-size: 4vw;
     text-align: left;
+}
+
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 3) { 
+    h2 {
+        color: #424B54;
+        font-size: 20px;
+        text-align: left;
+    }
+    .container {
+        width: 200px;
+    }
+}
+
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 2) { 
+    h2 {
+        color: #424B54;
+        font-size: 20px;
+        text-align: left;
+    }
+    .container {
+        width: 200px;
+    }
 }
