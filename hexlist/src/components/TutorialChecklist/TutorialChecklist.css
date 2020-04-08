@@ -1,0 +1,14 @@
+.logoImage {
+  height: 30px;
+  width: 30px;
+  color: #424b54;
+  flex: 0 0 auto;
+  padding-bottom: 10px;
+}
+
+p {
+  color: #424b54;
+  padding-left: 0px;
+  font-size: 20px;
+  line-height: 15px;
+}
