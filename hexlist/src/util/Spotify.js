@@ -1,40 +1,42 @@
-const clientId = "4b2644aba9af45e0bf4cef0fd58b7d6c";
-const responseType = "token";
-const redirectUri = "http://localhost:3000";
-const scope =
-  "user-read-private playlist-modify-private user-top-read user-read-recently-played";
-export const Spotify = {
-  url: `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${encodeURI(
-    scope
-  )}`,
-  getToken: function () {
+export default class Spotify {
+  constructor(clientId, responseType, redirectUri, scope) {
+    this.clientId = clientId;
+    this.responseType = responseType;
+    this.redirectUri = redirectUri;
+    this.scope = scope;
+    this.url = `https://accounts.spotify.com/authorize?client_id=${
+      this.clientId
+    }&redirect_uri=${this.redirectUri}&response_type=${
+      this.responseType
+    }&scope=${encodeURI(this.scope)}`;
+    this.userInfo = [];
+    this.accessToken = "";
+  }
+  getToken() {
     const href = window.location.href;
     if (href.includes("access_token")) {
       const userToken = href.match(/access_token=([^&]*)/)[1];
-      return userToken;
+      this.accessToken = userToken;
     }
-  },
-  getUserPlaylists: async function () {
-    const userToken = this.getToken();
+  }
+  async getUserInfo() {
+    const userToken = this.accessToken;
     if (userToken) {
       try {
-        const response = await fetch(
-          "https://api.spotify.com/v1/me/playlists",
-          {
-            headers: {
-              Authorization: "Bearer " + userToken,
-            },
-          }
-        );
+        const response = await fetch("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: "Bearer " + userToken,
+          },
+        });
         if (response.ok) {
           const jsonResponse = await response.json();
-          console.log(jsonResponse.items);
+          this.userInfo.me = jsonResponse;
+        } else {
+          return response.status;
         }
       } catch (e) {
         console.log(e);
       }
-    } else {
-      console.log("no access token");
     }
-  },
-};
+  }
+}

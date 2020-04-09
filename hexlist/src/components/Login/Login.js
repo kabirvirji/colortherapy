@@ -5,8 +5,15 @@ import TitleText from "../TitleText/TitleText";
 import Flex from "../Flex/Flex";
 import SpotifyButton from "../SpotifyButton/SpotifyButton";
 import ImageGif from "../ImageGif/ImageGif";
+import { Spotify } from "../../util/Spotify";
 
 export default class Login extends Component {
+  componentDidMount() {
+    console.log("just mounted");
+  }
+  componentWillUnmount() {
+    console.log("login unmounted");
+  }
   render() {
     return (
       <div className='App'>
@@ -15,7 +22,7 @@ export default class Login extends Component {
           <Flex display='flex' flexDirection='column'>
             <TitleText title='Use color to generate playlists based on your mood'></TitleText>
             <TutorialChecklist></TutorialChecklist>
-            <SpotifyButton></SpotifyButton>
+            <SpotifyButton url={this.props.SpotifyUrl}></SpotifyButton>
           </Flex>
           <ImageGif></ImageGif>
         </Flex>

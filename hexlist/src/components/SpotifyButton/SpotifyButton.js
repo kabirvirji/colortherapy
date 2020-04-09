@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Spotify } from "../../util/Spotify";
 
 const buttonStyle = {
   backgroundColor: "#1DB954",
@@ -20,7 +19,7 @@ class SpotifyButton extends Component {
   render() {
     return (
       <div>
-        <a href={Spotify.url}>
+        <a href={this.props.url}>
           <button style={buttonStyle}>Login with Spotify</button>
         </a>
       </div>
