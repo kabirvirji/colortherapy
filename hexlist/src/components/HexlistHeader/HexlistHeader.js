@@ -8,7 +8,7 @@ class HexlistHeaders extends Component {
       <div>
         <header>
           <h1 className='Header-text'>
-            <a href='/'>Color Therapy</a>
+            Color Therapy
           </h1>
         </header>
       </div>

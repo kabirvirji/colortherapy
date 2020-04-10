@@ -12,6 +12,7 @@ import React, { Component } from 'react';
           height: '100%',
           maxWidth: this.props.maxWidth || 'none',
           justifyContent: this.props.justifyContent || 'flex-start',
+          flexWrap: this.props.flexWrap || 'nowrap',
 
         }}
       >
