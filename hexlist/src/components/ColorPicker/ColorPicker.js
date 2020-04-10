@@ -17,11 +17,11 @@ export default class extends React.Component {
         // this.handlePick = this.handlePick.bind(this)
     }
     randomRGB() { 
-        const generateValue = () => {
+        const rand = () => {
             return Math.floor(Math.random() * 255)
         }
         while (1) {
-            let color = `rgb(${generateValue()}, ${generateValue()}, ${generateValue()})`
+            let color = `rgb(${rand()}, ${rand()}, ${rand()})`
             if (!this.state.usedRGB.includes(color)) {
                 this.state.usedRGB.push(color)
                 return {
@@ -48,16 +48,18 @@ export default class extends React.Component {
         return (
             <div>
                 <HexlistHeader></HexlistHeader>
-                    <Flex flexWrap="wrap">
-                        {[...Array(numberOfSquares)].map(() => {
-                            let color = this.randomRGB()
-                            return (
-                                <div className="square" style={color} onClick={(e) => this.handlePick(e, color.backgroundColor)} key={color.backgroundColor}>
-                                    <div className="inner"></div>
-                                </div>
+                <div className="colorContainer">
+                        <Flex flexWrap="wrap" justifyContent="center">
+                            {[...Array(numberOfSquares)].map(() => {
+                                let color = this.randomRGB()
+                                return (
+                                    <div className="square" style={color} onClick={(e) => this.handlePick(e, color.backgroundColor)} key={color.backgroundColor}>
+                                        <div className="inner"></div>
+                                    </div>
+                                )}
                             )}
-                        )}
-                    </Flex>
+                        </Flex>
+                </div>
             </div>
         );
     }

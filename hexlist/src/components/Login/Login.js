@@ -16,10 +16,10 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <div className='App'>
+      <div>
         <HexlistHeader></HexlistHeader>
-        <Flex maxWidth='2000px' flexDirection='row'>
-          <Flex display='flex' flexDirection='column'>
+        <Flex flexDirection='row'>
+          <Flex flexDirection='column'>
             <TitleText title='Use color to generate playlists based on your mood'></TitleText>
             <TutorialChecklist></TutorialChecklist>
             <SpotifyButton url={this.props.SpotifyUrl}></SpotifyButton>
