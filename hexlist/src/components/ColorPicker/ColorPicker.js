@@ -32,14 +32,14 @@ export default class extends React.Component {
     
     }
     handlePick(e, color) {
-        this.state.currentColor = color
         if (!this.state.chosenRGB.includes(color)) {
-            this.state.chosenRGB.push(color)
+            let rgbArr = color.replace(/[^\d,]/g, '').split(',');
+            this.state.chosenRGB.push(rgbArr)
         }
-        console.log(e.currentTarget.style)
         e.currentTarget.style = {
             backgroundColor: '#ffffff' // makes square disappear
         }
+        console.log(this.state)
     }
     componentDidMount() {
         //this.props.didMount();
