@@ -6,9 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #F7F7F2;
-  height: 100%;
-  width: 100%;
-  background-color: green;
   animation: changeColor ease;
   animation-iteration-count: infinite;
   animation-duration: 4s;
@@ -38,12 +35,6 @@ code {
     monospace;
 }
 
-/* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-    .body {
-      background-color: black;
-    }
+* {
+  box-sizing: border-box
 }
