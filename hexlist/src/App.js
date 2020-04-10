@@ -7,6 +7,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import Quiz from "../src/components/Quiz/Quiz";
+import ColorPicker from "../src/components/ColorPicker/ColorPicker";
 import Spotify from "./util/Spotify";
 
 const clientId = "4b2644aba9af45e0bf4cef0fd58b7d6c";
@@ -52,6 +53,9 @@ class App extends Component {
         <Route path='/quiz'>
           {/* Try making this route private */}
           <Quiz didMount={this.didMount} />
+        </Route>
+        <Route path='/colorpicker'>
+          <ColorPicker didMount={this.didMount} />
         </Route>
       </Router>
     );

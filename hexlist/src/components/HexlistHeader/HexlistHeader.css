@@ -26,12 +26,7 @@
       /*padding: 42.88px;*/
   }
 
-  a {
-      text-decoration: none;
-      color: #424B54;
-    }
-
-  a:hover {
+  .Header-text:hover {
     color: #B49FCC;
 }   
   
