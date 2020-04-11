@@ -1,10 +1,11 @@
 import React from "react";
-import Flex from '../Flex/Flex'
+import Flex from "../Flex/Flex";
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import ColoredSquare from "../ColoredSquare/ColoredSquare";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import "./ColorPicker.css";
+import { Redirect } from "react-router-dom";
 
 export default class extends React.Component {
     state = {
@@ -90,4 +91,5 @@ export default class extends React.Component {
                 </div>
         );
     }
+  }
 }
