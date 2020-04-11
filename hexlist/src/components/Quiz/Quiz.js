@@ -1,11 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default class extends React.Component {
+export default class Quiz extends React.Component {
   componentDidMount() {
-    console.log("Quiz just mounted");
     this.props.didMount();
   }
   render() {
-    return <h1>Welcome to Quizz</h1>;
+    return (
+      <div>
+        <h1>Welcome to Quizz</h1>
+        <Link
+          to={{
+            pathname: "/colorpicker",
+          }}>
+          ColorPicker
+        </Link>
+      </div>
+    );
   }
 }

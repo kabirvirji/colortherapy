@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import Login from "./components/Login/Login";
-import {
-  Route,
-  BrowserRouter as Router,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import Quiz from "../src/components/Quiz/Quiz";
 import ColorPicker from "../src/components/ColorPicker/ColorPicker";
 import Spotify from "./util/Spotify";
@@ -22,24 +17,30 @@ class App extends Component {
     super(props);
     this.state = {
       LOGIN: false,
-      userInfo: "",
-      accessToken: "",
     };
-    this.didMount = this.didMount.bind(this);
-  }
-  componentDidMount() {
-    // console.log("App component just mounted", this.state.LOGIN);
+    this.didMountQuiz = this.didMountQuiz.bind(this);
   }
 
-  async didMount() {
+  async didMountQuiz() {
     SpotifyInst.getToken();
-    console.log(SpotifyInst.accessToken);
     await SpotifyInst.getUserInfo();
-    if (SpotifyInst.userInfo.me) {
+    await SpotifyInst.getTopArtists();
+    // if you run the commented lines then you will generate a playlist on your spotify!
+    // await SpotifyInst.getRecommendations(
+    //   [SpotifyInst.topArtists[0], SpotifyInst.topArtists[1]],
+    //   0,
+    //   0,
+    //   0,
+    //   0,
+    //   0,
+    //   0
+    // );
+    // await SpotifyInst.createPlaylist();
+    await SpotifyInst.populatePlaylist();
+
+    if (SpotifyInst.userInfo) {
       this.setState({
         LOGIN: true,
-        userInfo: SpotifyInst.userInfo.me,
-        accessToken: SpotifyInst.accessToken,
       });
     }
   }
@@ -52,10 +53,10 @@ class App extends Component {
         </Route>
         <Route path='/quiz'>
           {/* Try making this route private */}
-          <Quiz didMount={this.didMount} />
+          <Quiz didMount={this.didMountQuiz} login={this.state.LOGIN} />
         </Route>
         <Route path='/colorpicker'>
-          <ColorPicker didMount={this.didMount} />
+          <ColorPicker login={this.state.LOGIN} />
         </Route>
       </Router>
     );

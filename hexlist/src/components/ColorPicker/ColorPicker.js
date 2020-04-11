@@ -1,14 +1,15 @@
 import React from "react";
 import Flex from '../Flex/Flex'
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
+import ColoredSquare from "../ColoredSquare/ColoredSquare";
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 import "./ColorPicker.css";
 
 export default class extends React.Component {
     state = {
-        currentColor: '',
-        usedRGB: [], // looks like [{backgroundColor: color}]
-        chosenRGB: [], 
+        usedRGB: [], // looks like [rgb(42, 78, 123), ...]
+        chosenRGB: [], // looks like [rgb(42, 78, 123), ...]
         numberOfSquares: 60,
         refreshRate: 10 // squares per scroll
     };
@@ -22,33 +23,29 @@ export default class extends React.Component {
             return Math.floor(Math.random() * 255)
         }
         while (1) {
-            let color = `rgb(${rand()}, ${rand()}, ${rand()})`
-            if (!this.state.usedRGB.includes(color)) {
-                let formattedColor = {
-                    backgroundColor: color
-                }
+            let rgbColor = `rgb(${rand()}, ${rand()}, ${rand()})`
+            if (!this.state.usedRGB.includes(rgbColor)) { // prevents duplicates
                 this.setState(prevState => ({
-                    usedRGB: [...prevState.usedRGB, formattedColor]
+                    usedRGB: [...prevState.usedRGB, rgbColor]
                 }))
-                return formattedColor
+                return rgbColor
             }
         }
-    
     }
-    handlePick(e, color) {
-        let rgbArr = color.replace(/[^\d,]/g, '').split(',');
-        if (!this.state.chosenRGB.includes(rgbArr)) {
-
-            this.setState(prevState => ({
-                chosenRGB: prevState.chosenRGB.concat([rgbArr])
-            }))
+    handlePick(e, color) { // TODO
+        // add color to "chosen rgb colors" part of state
+        // will need to pass chosen color to bubble component?
+        // will need to pass this.state.chosenRGB and colorCalibration to getValence function
+        if (!this.state.chosenRGB.includes(color)) { // prevents duplicate clicks adding to array
+          this.setState((prevState) => ({
+            chosenRGB: prevState.chosenRGB.concat([color]), 
+          }));
+          console.log(this.state.chosenRGB, color)
         }
-        e.currentTarget.style = {
-            backgroundColor: '',
-            outline: 'none'
-        }
+        // now the color square dissapears onclick, need to move to bubble component
+        // when clicked from bubble, the color square goes back to the grid in its original position
     }
-    fetchData() {
+    fetchData() { // creates new squares and appends to usedRGB for infinite scroll 
         let freshColors = []
         for (let i = 0; i < this.state.refreshRate; i++) {
             freshColors[i] = this.randomRGB()
@@ -60,7 +57,7 @@ export default class extends React.Component {
         }, 1500);
     }
     UNSAFE_componentWillMount() {
-        const init = () => {
+        const init = () => { // creates the initial squares
             let tmp = []
             for (let i = 0; i < this.state.numberOfSquares; i++) {
                 tmp.push(this.randomRGB())
@@ -68,7 +65,7 @@ export default class extends React.Component {
             return tmp
         }
         this.setState({
-            usedRGB: init()
+            usedRGB: init() // initilize since we pull squares from this.state.usedRGB in render
         })
     }
     render() {
@@ -83,10 +80,9 @@ export default class extends React.Component {
                             <Flex flexWrap="wrap" justifyContent="center">
                                 {this.state.usedRGB.map((color, index) => {
                                     return (
-                                        <div className="square" style={color} onClick={(e) => this.handlePick(e, color.backgroundColor)} key={index}>
-                                            <div className="inner"></div>
-                                        </div>
-                                    )}
+                                        <ColoredSquare color={color} key={index}></ColoredSquare>
+                                    )
+                                }
                                 )}
                             </Flex>
                         </div>
