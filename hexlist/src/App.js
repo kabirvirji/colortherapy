@@ -17,21 +17,30 @@ class App extends Component {
     super(props);
     this.state = {
       LOGIN: false,
-      userInfo: "",
-      accessToken: "",
     };
-    this.didMount = this.didMount.bind(this);
+    this.didMountQuiz = this.didMountQuiz.bind(this);
   }
 
-  async didMount() {
+  async didMountQuiz() {
     SpotifyInst.getToken();
-    console.log(SpotifyInst.accessToken);
     await SpotifyInst.getUserInfo();
-    if (SpotifyInst.userInfo.me) {
+    await SpotifyInst.getTopArtists();
+    // if you run the commented lines then you will generate a playlist on your spotify!
+    // await SpotifyInst.getRecommendations(
+    //   [SpotifyInst.topArtists[0], SpotifyInst.topArtists[1]],
+    //   0,
+    //   0,
+    //   0,
+    //   0,
+    //   0,
+    //   0
+    // );
+    // await SpotifyInst.createPlaylist();
+    await SpotifyInst.populatePlaylist();
+
+    if (SpotifyInst.userInfo) {
       this.setState({
         LOGIN: true,
-        userInfo: SpotifyInst.userInfo.me,
-        accessToken: SpotifyInst.accessToken,
       });
     }
   }
@@ -44,7 +53,7 @@ class App extends Component {
         </Route>
         <Route path='/quiz'>
           {/* Try making this route private */}
-          <Quiz didMount={this.didMount} login={this.state.LOGIN} />
+          <Quiz didMount={this.didMountQuiz} login={this.state.LOGIN} />
         </Route>
         <Route path='/colorpicker'>
           <ColorPicker login={this.state.LOGIN} />
