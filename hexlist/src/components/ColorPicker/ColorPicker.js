@@ -44,7 +44,8 @@ export default class extends React.Component {
             }))
         }
         e.currentTarget.style = {
-            backgroundColor: '#ffffff' // makes square disappear
+            backgroundColor: '',
+            outline: 'none'
         }
     }
     fetchData() {
