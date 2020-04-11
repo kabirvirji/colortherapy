@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import Login from "./components/Login/Login";
-import {
-  Route,
-  BrowserRouter as Router,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import Quiz from "../src/components/Quiz/Quiz";
 import ColorPicker from "../src/components/ColorPicker/ColorPicker";
 import Spotify from "./util/Spotify";
@@ -26,9 +21,6 @@ class App extends Component {
       accessToken: "",
     };
     this.didMount = this.didMount.bind(this);
-  }
-  componentDidMount() {
-    // console.log("App component just mounted", this.state.LOGIN);
   }
 
   async didMount() {
@@ -52,10 +44,10 @@ class App extends Component {
         </Route>
         <Route path='/quiz'>
           {/* Try making this route private */}
-          <Quiz didMount={this.didMount} />
+          <Quiz didMount={this.didMount} login={this.state.LOGIN} />
         </Route>
         <Route path='/colorpicker'>
-          <ColorPicker didMount={this.didMount} />
+          <ColorPicker login={this.state.LOGIN} />
         </Route>
       </Router>
     );
