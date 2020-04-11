@@ -6,14 +6,16 @@ import "./ColorPicker.css";
 
 export default class extends React.Component {
     state = {
+        currentColor: '',
         usedRGB: [], // looks like [{backgroundColor: color}]
-        chosenRGB: [], // looks like [["152", "33", "89"]]
-        numberOfSquares: 40,
+        chosenRGB: [], 
+        numberOfSquares: 60,
         refreshRate: 10 // squares per scroll
     };
     constructor(props) {
         super(props);
         this.randomRGB = this.randomRGB.bind(this)
+        // this.handlePick = this.handlePick.bind(this)
     }
     randomRGB() { // returns unique rgb color
         const rand = () => {
@@ -36,6 +38,7 @@ export default class extends React.Component {
     handlePick(e, color) {
         let rgbArr = color.replace(/[^\d,]/g, '').split(',');
         if (!this.state.chosenRGB.includes(rgbArr)) {
+
             this.setState(prevState => ({
                 chosenRGB: prevState.chosenRGB.concat([rgbArr])
             }))

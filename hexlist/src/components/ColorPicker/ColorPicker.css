@@ -1,9 +1,11 @@
 .square {
     position: relative;
     /*flex-basis: calc(33.333% - 10px);*/
-    flex-basis: 126px;
+    flex-basis: 200px;
     margin: 20px;
     box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
   }
 .square::before {
     content: '';
