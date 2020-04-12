@@ -1,0 +1,67 @@
+.card {
+  z-index: 0;
+  width: 50vw;
+  height: 30vh;
+  margin: auto;
+  background-color: #f7f1e6;
+  box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.card.active {
+  z-index: 1;
+  animation: fadeIn 0.6s ease-in-out both 0.5s;
+}
+
+.card.inactive {
+  z-index: 2;
+  animation: fadeOut 0.5s ease-in-out both;
+}
+p {
+  font-size: 1.5vw;
+  margin-top: 5vh;
+  line-height: 2rem;
+}
+#container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  p {
+    margin-top: 3vh;
+    font-size: 2vw;
+    font-weight: bold;
+  }
+}
