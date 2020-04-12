@@ -1,0 +1,24 @@
+button {
+  background-color: #323ef7;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 50px;
+  width: 20vw;
+  margin-top: 2.75vh;
+}
+@media only screen and (max-width: 600px) {
+  button {
+    margin-top: 1.75vh;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  button {
+    width: 200px;
+  }
+}
