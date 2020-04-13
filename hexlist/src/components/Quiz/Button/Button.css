@@ -13,7 +13,8 @@ button {
 }
 @media only screen and (max-width: 600px) {
   button {
-    margin-top: 1.75vh;
+    margin-top: 1.3vh;
+    width: 15vw;
   }
 }
 
