@@ -20,7 +20,6 @@ class ColoredSquare extends Component {
           style={!this.state.clicked ? {backgroundColor: this.props.color} : {
             backgroundColor: this.props.color,
             boxShadow:'none',
-            borderStyle: 'solid',
             filter: 'blur(10px)'
           }} 
           onClick={() => this.handleClick()}

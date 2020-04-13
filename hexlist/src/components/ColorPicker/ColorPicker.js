@@ -3,6 +3,7 @@ import Flex from "../Flex/Flex";
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import ColoredSquare from "../ColoredSquare/ColoredSquare";
 import InfiniteScroll from "react-infinite-scroll-component";
+import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage"
 
 import "./ColorPicker.css";
 import { Redirect } from "react-router-dom";
@@ -74,6 +75,9 @@ export default class ColorPicker extends React.Component {
     this.setState({
       usedRGB: init(), // initilize since we pull squares from this.state.usedRGB in render
     });
+
+
+
   }
   render() {
     return (
@@ -93,6 +97,8 @@ export default class ColorPicker extends React.Component {
             </Flex>
           </div>
         </InfiniteScroll>
+        {/* can pass in this.state.chosenRGB as colorArr */}
+        <GeneratePlaylistImage colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
       </div>
     );
   }
