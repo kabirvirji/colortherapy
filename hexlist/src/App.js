@@ -17,14 +17,22 @@ class App extends Component {
     super(props);
     this.state = {
       LOGIN: false,
+      energy: 5,
+      red: 5,
+      green: 5,
+      blue: 5,
+      yellow: 5,
+      white: 5,
+      black: 5,
     };
     this.didMountQuiz = this.didMountQuiz.bind(this);
+    this.handleChangeSlider = this.handleChangeSlider.bind(this);
   }
 
   async didMountQuiz() {
-    SpotifyInst.getToken();
-    await SpotifyInst.getUserInfo();
-    await SpotifyInst.getTopArtists();
+    // SpotifyInst.getToken();
+    // await SpotifyInst.getUserInfo();
+    // await SpotifyInst.getTopArtists();
     // if you run the commented lines then you will generate a playlist on your spotify!
     // await SpotifyInst.getRecommendations(
     //   [SpotifyInst.topArtists[0], SpotifyInst.topArtists[1]],
@@ -36,13 +44,20 @@ class App extends Component {
     //   0
     // );
     // await SpotifyInst.createPlaylist();
-    await SpotifyInst.populatePlaylist();
+    // await SpotifyInst.populatePlaylist();
 
     if (SpotifyInst.userInfo) {
       this.setState({
         LOGIN: true,
       });
     }
+  }
+
+  handleChangeSlider(e) {
+    const id = e.target.getAttribute("id");
+    this.setState({
+      [id]: Number(e.target.value),
+    });
   }
 
   render() {
@@ -52,8 +67,20 @@ class App extends Component {
           <Login SpotifyUrl={SpotifyInst.url} />
         </Route>
         <Route path='/quiz'>
-          {/* Try making this route private */}
-          <Quiz didMount={this.didMountQuiz} login={this.state.LOGIN} />
+          <Quiz
+            didMount={this.didMountQuiz}
+            login={this.state.LOGIN}
+            onChange={this.handleChangeSlider}
+            value={{
+              energy: this.state.energy,
+              red: this.state.red,
+              green: this.state.green,
+              blue: this.state.blue,
+              yellow: this.state.yellow,
+              white: this.state.white,
+              black: this.state.black,
+            }}
+          />
         </Route>
         <Route path='/colorpicker'>
           <ColorPicker login={this.state.LOGIN} />

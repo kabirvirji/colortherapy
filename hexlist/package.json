@@ -12,7 +12,8 @@
     "react-infinite-scroll-component": "^5.0.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "spotify-uri": "^2.0.0"
+    "spotify-uri": "^2.0.0",
+    "uikit": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
