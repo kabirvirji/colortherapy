@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./ColoredSquare.css";
 
-
 class ColoredSquare extends Component {
   state = {
     clicked: false
@@ -18,7 +17,12 @@ class ColoredSquare extends Component {
     return (
         <div 
           className="square" 
-          style={!this.state.clicked ? {backgroundColor: this.props.color} : {boxShadow:'none'}} 
+          style={!this.state.clicked ? {backgroundColor: this.props.color} : {
+            backgroundColor: this.props.color,
+            boxShadow:'none',
+            borderStyle: 'solid',
+            filter: 'blur(10px)'
+          }} 
           onClick={() => this.handleClick()}
         >
         </div>
