@@ -5,6 +5,57 @@ import "./Quiz.css";
 import Range from "./Range/Range";
 import ColorQuestion from "./ColorQuestion/ColorQuestion";
 
+const style = {
+  fontSize: 30,
+};
+
+function numberToWord(number) {
+  if (number >= 9) {
+    return (
+      <span role='img' style={style}>
+        &#128175;
+      </span>
+    );
+  }
+  if (number >= 8 && number < 9) {
+    return (
+      <span role='img' style={style}>
+        &#128293;
+      </span>
+    );
+  } else if (number >= 6 && number < 8) {
+    return (
+      <span role='img' style={style}>
+        &#128522;
+      </span>
+    );
+  } else if (number >= 4 && number < 6) {
+    return (
+      <span role='img' style={style}>
+        &#128528;
+      </span>
+    );
+  } else if (number >= 2 && number < 4) {
+    return (
+      <span role='img' style={style}>
+        &#128554;
+      </span>
+    );
+  } else if (number >= 1 && number < 2) {
+    return (
+      <span role='img' style={style}>
+        &#128560;
+      </span>
+    );
+  } else if (number >= 0 && number < 1) {
+    return (
+      <span role='img' style={style}>
+        &#128557;
+      </span>
+    );
+  }
+}
+
 export default class Quiz extends React.Component {
   constructor(props) {
     super(props);
@@ -31,12 +82,14 @@ export default class Quiz extends React.Component {
         </div>
         <div className='card'>
           <p>How energetic are you feeling today?</p>
-          <Range
-            onChange={this.props.onChange}
-            id='energy'
-            value={this.props.value["energy"]}
-          />
-          {this.props.value["energy"]}
+          <div className='range'>
+            <Range
+              onChange={this.props.onChange}
+              id='energy'
+              value={this.props.value["energy"]}
+            />
+            {numberToWord(this.props.value["energy"])}
+          </div>
           <Button onClick={this.handleClick}>Next</Button>
         </div>
         <div className='card'>
@@ -83,6 +136,5 @@ export default class Quiz extends React.Component {
   }
 }
 
-// fix scroll on animation
 //Add some media queries
 //Explain what numbers mean for colors

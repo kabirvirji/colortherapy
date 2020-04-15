@@ -83,7 +83,7 @@ class App extends Component {
           />
         </Route>
         <Route path='/colorpicker'>
-          <ColorPicker login={this.state.LOGIN} />
+          {this.state.LOGIN ? <ColorPicker /> : <Redirect to='/' />}
         </Route>
       </Router>
     );

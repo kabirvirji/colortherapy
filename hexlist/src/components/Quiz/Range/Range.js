@@ -9,11 +9,11 @@ export default class Range extends React.Component {
           type='range'
           min='0'
           max='10'
-          step='0.5'
+          step='0.001'
           value={this.props.value}
           onChange={this.props.onChange}
           id={this.props.id}
-          className='uk-range'
+          // className='uk-range'
         />
       </div>
     );

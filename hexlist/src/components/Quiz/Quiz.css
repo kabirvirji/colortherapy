@@ -6,7 +6,11 @@
 .card {
   z-index: 0;
   width: 50vw;
-  height: 30vh;
+  display: grid;
+  grid-template-rows: 2fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 50vh;
   margin: auto;
   background-color: #f7f1e6;
   box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.15);
@@ -27,6 +31,7 @@
   animation: fadeOut 0.5s ease-in-out both;
 }
 p {
+  font-weight: bolder;
   font-size: 1.5vw;
   margin-top: 5vh;
   line-height: 2rem;
@@ -38,6 +43,13 @@ p {
   justify-content: center;
 }
 
+.range {
+  width: 100%;
+}
+
+button {
+  grid-row: 2/3;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -65,8 +77,7 @@ p {
 
 @media only screen and (max-width: 600px) {
   p {
-    margin-top: 3vh;
-    font-size: 2vw;
+    font-size: 14px;
     font-weight: bold;
   }
 }

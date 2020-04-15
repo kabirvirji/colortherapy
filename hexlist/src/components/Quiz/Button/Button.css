@@ -1,7 +1,7 @@
 button {
-  background-color: #323ef7;
+  background-color: #77bdfa;
   border: none;
-  color: white;
+  color: #f3e8ee;
   padding: 10px;
   text-align: center;
   text-decoration: none;
@@ -9,7 +9,6 @@ button {
   font-size: 14px;
   border-radius: 50px;
   width: 20vw;
-  margin-top: 2.75vh;
 }
 @media only screen and (max-width: 600px) {
   button {
