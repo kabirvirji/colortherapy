@@ -5,10 +5,12 @@ export default class Range extends React.Component {
   render() {
     return (
       <div>
+        <p className="min-text">{this.props.minText}</p>
+        <p className="max-text">{this.props.maxText}</p>
         <input
           type='range'
           min='0'
-          max='10'
+          max='1'
           step='0.001'
           value={this.props.value}
           onChange={this.props.onChange}
