@@ -5,6 +5,7 @@ import TitleText from "../TitleText/TitleText";
 import Flex from "../Flex/Flex";
 import SpotifyButton from "../SpotifyButton/SpotifyButton";
 import ImageGif from "../ImageGif/ImageGif";
+import "./Login.css";
 import { Spotify } from "../../util/Spotify";
 
 export default class Login extends Component {
@@ -16,16 +17,17 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='container'>
         <HexlistHeader></HexlistHeader>
-        <Flex flexDirection='row'>
-          <Flex flexDirection='column'>
+        <div className='container major'>
+          <div className='left'>
             <TitleText title='Use color to generate playlists based on your mood'></TitleText>
             <TutorialChecklist></TutorialChecklist>
             <SpotifyButton url={this.props.SpotifyUrl}></SpotifyButton>
-          </Flex>
+          </div>
+
           <ImageGif></ImageGif>
-        </Flex>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+}
+
+.container.major {
+  grid-template-columns: 1fr 2fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.left {
+  min-width: 351px;
+}

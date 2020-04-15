@@ -8,21 +8,15 @@ class TutorialChecklist extends Component {
     return (
       <div>
         <Flex flexDirection='column' container width='400px'>
-          <Flex flexDirection='row' container width='400px'>
-            <p>
-              <strong>1)</strong> Take our unique color quiz
-            </p>
-          </Flex>
-          <Flex flexDirection='row' container width='400px'>
-            <p>
-              <strong>2)</strong> Choose your colors for today
-            </p>
-          </Flex>
-          <Flex flexDirection='row' container width='400px'>
-            <p>
-              <strong>3)</strong> Generate a personalized playlist
-            </p>
-          </Flex>
+          <p className='checklist'>
+            <strong>1)</strong> Take our unique color quiz
+          </p>
+          <p className='checklist'>
+            <strong>2)</strong> Choose your colors for today
+          </p>
+          <p className='checklist'>
+            <strong>3)</strong> Generate a personalized playlist
+          </p>
         </Flex>
       </div>
     );
