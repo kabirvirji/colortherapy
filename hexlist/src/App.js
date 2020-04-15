@@ -18,12 +18,12 @@ class App extends Component {
     this.state = {
       LOGIN: false,
       energy: 5,
-      red: 5,
-      green: 5,
-      blue: 5,
-      yellow: 5,
-      white: 5,
-      black: 5,
+      red: 0.5,
+      green: 0.5,
+      blue: 0.5,
+      yellow: 0.5,
+      white: 0.5,
+      black: 0.5,
     };
     this.didMountQuiz = this.didMountQuiz.bind(this);
     this.handleChangeSlider = this.handleChangeSlider.bind(this);

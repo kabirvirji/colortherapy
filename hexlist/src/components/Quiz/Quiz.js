@@ -10,44 +10,44 @@ const style = {
 };
 
 function numberToWord(number) {
-  if (number >= 9) {
+  if (number >= 0.9) {
     return (
       <span role='img' style={style}>
         &#128175;
       </span>
     );
   }
-  if (number >= 8 && number < 9) {
+  if (number >= 0.8 && number < 0.9) {
     return (
       <span role='img' style={style}>
         &#128293;
       </span>
     );
-  } else if (number >= 6 && number < 8) {
+  } else if (number >= 0.6 && number < 0.8) {
     return (
       <span role='img' style={style}>
         &#128522;
       </span>
     );
-  } else if (number >= 4 && number < 6) {
+  } else if (number >= 0.4 && number < 0.6) {
     return (
       <span role='img' style={style}>
         &#128528;
       </span>
     );
-  } else if (number >= 2 && number < 4) {
+  } else if (number >= 0.2 && number < 0.4) {
     return (
       <span role='img' style={style}>
         &#128554;
       </span>
     );
-  } else if (number >= 1 && number < 2) {
+  } else if (number >= 0.1 && number < 0.2) {
     return (
       <span role='img' style={style}>
         &#128560;
       </span>
     );
-  } else if (number >= 0 && number < 1) {
+  } else if (number >= 0 && number < 0.1) {
     return (
       <span role='img' style={style}>
         &#128557;
@@ -81,14 +81,16 @@ export default class Quiz extends React.Component {
           <Button onClick={this.handleClick}>Next</Button>
         </div>
         <div className='card'>
-          <p className='quizlist'>How energetic are you feeling today?</p>
+          <p className='quizlist'>How energetic are you today?</p>
           <div className='range'>
+            {numberToWord(this.props.value["energy"])}
             <Range
               onChange={this.props.onChange}
               id='energy'
               value={this.props.value["energy"]}
+              minText={"A bit down"}
+              maxText={"Great"}
             />
-            {numberToWord(this.props.value["energy"])}
           </div>
           <Button onClick={this.handleClick}>Next</Button>
         </div>

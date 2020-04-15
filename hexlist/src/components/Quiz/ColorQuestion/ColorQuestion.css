@@ -7,3 +7,7 @@
   height: 15vh;
   width: 15vh;
 }
+.emoji {
+  padding: 10px;
+  font-size: 40px;
+}
