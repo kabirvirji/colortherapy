@@ -30,7 +30,8 @@
   z-index: 2;
   animation: fadeOut 0.5s ease-in-out both;
 }
-p {
+.quizlist {
+  color: #424b54;
   font-weight: bolder;
   font-size: 1.5vw;
   margin-top: 5vh;

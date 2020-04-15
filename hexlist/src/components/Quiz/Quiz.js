@@ -74,14 +74,14 @@ export default class Quiz extends React.Component {
     return (
       <div id='container'>
         <div className='card active'>
-          <p>
+          <p className='quizlist'>
             Before taking you to Color Therapy we'd like to ask you a few
             questions to know how you're feeling.
           </p>
           <Button onClick={this.handleClick}>Next</Button>
         </div>
         <div className='card'>
-          <p>How energetic are you feeling today?</p>
+          <p className='quizlist'>How energetic are you feeling today?</p>
           <div className='range'>
             <Range
               onChange={this.props.onChange}
@@ -93,7 +93,9 @@ export default class Quiz extends React.Component {
           <Button onClick={this.handleClick}>Next</Button>
         </div>
         <div className='card'>
-          <p>How do you feel about the following colors?</p>
+          <p className='quizlist'>
+            How do you feel about the following colors?
+          </p>
           <Button onClick={this.handleClick}>Next</Button>
         </div>
         <ColorQuestion
