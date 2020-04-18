@@ -2,6 +2,7 @@ import React from "react";
 import Flex from "../Flex/Flex";
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import ColoredSquare from "../ColoredSquare/ColoredSquare";
+import Bubble from "../Bubble/Bubble";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage"
 
@@ -76,18 +77,19 @@ export default class ColorPicker extends React.Component {
       usedRGB: init(), // initilize since we pull squares from this.state.usedRGB in render
     });
 
-
-
   }
   render() {
     return (
       <div>
         <HexlistHeader></HexlistHeader>
+        
         <InfiniteScroll
           dataLength={this.state.usedRGB.length}
           next={() => this.fetchData()}
           hasMore={true}>
-          <div className='colorContainer'>
+          
+          <div className='colorContainer' style={{position: 'relative'}}>
+            
             <Flex flexWrap='wrap' justifyContent='center'>
               {this.state.usedRGB.map((color, index) => {
                 return (
@@ -95,8 +97,10 @@ export default class ColorPicker extends React.Component {
                 );
               })}
             </Flex>
+            <Bubble></Bubble>
           </div>
         </InfiniteScroll>
+        
         {/* can pass in this.state.chosenRGB as colorArr */}
         <GeneratePlaylistImage colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
       </div>
