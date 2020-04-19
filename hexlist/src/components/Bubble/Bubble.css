@@ -1,0 +1,21 @@
+.overlay {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 50em;
+    height: 40vh;
+}
+.overlay:hover {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 50em;
+    height: 40vh;
+}
+.bubble {
+    width: 50em;
+    height: 40vh;
+    background-color: #424b54;
+    opacity: 70%;
+    border-radius: 50px;
+}

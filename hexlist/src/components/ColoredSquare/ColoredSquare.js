@@ -9,10 +9,12 @@ class ColoredSquare extends Component {
       super(props);
   }
   handleClick() {
+    this.props.onPress()
     this.setState(prevState => ({
       clicked: !prevState.clicked
     }))
   }
+  // need to remove onclick
   render() {
     return (
         <div 
