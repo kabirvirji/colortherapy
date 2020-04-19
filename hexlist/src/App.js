@@ -3,21 +3,21 @@ import Login from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import Quiz from "../src/components/Quiz/Quiz";
 import ColorPicker from "../src/components/ColorPicker/ColorPicker";
-import Spotify from "./util/Spotify";
+import SpotifyAPI from "./util/Spotify";
 
 const clientId = "4b2644aba9af45e0bf4cef0fd58b7d6c";
 const responseType = "token";
 const redirectUri = "http://localhost:3000/quiz";
 const scope =
   "user-read-private playlist-modify-private user-top-read user-read-recently-played";
-const SpotifyInst = new Spotify(clientId, responseType, redirectUri, scope);
+const Spotify = new SpotifyAPI(clientId, responseType, redirectUri, scope);
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       LOGIN: true,
-      energy: 5,
+      energy: 0.5,
       red: 0.5,
       green: 0.5,
       blue: 0.5,
@@ -30,9 +30,9 @@ class App extends Component {
   }
 
   async didMountQuiz() {
-    // SpotifyInst.getToken();
-    // await SpotifyInst.getUserInfo();
-    // await SpotifyInst.getTopArtists();
+    Spotify.getToken();
+    await Spotify.getUserInfo();
+    // await
     // if you run the commented lines then you will generate a playlist on your spotify!
     // await SpotifyInst.getRecommendations(
     //   [SpotifyInst.topArtists[0], SpotifyInst.topArtists[1]],
@@ -46,7 +46,8 @@ class App extends Component {
     // await SpotifyInst.createPlaylist();
     // await SpotifyInst.populatePlaylist();
 
-    if (SpotifyInst.userInfo) {
+    if (Spotify.userInfo) {
+      console.log(Spotify.userInfo, "userinfo");
       this.setState({
         LOGIN: true,
       });
@@ -64,7 +65,7 @@ class App extends Component {
     return (
       <Router>
         <Route path='/' exact>
-          <Login SpotifyUrl={SpotifyInst.url} />
+          <Login SpotifyUrl={Spotify.url} />
         </Route>
         <Route path='/quiz'>
           <Quiz
@@ -83,7 +84,22 @@ class App extends Component {
           />
         </Route>
         <Route path='/colorpicker'>
-          {this.state.LOGIN ? <ColorPicker /> : <Redirect to='/' />}
+          {this.state.LOGIN ? (
+            <ColorPicker
+              Spotify={Spotify}
+              energy={this.state.energy}
+              colors={{
+                red: this.state.red,
+                blue: this.state.blue,
+                green: this.state.green,
+                yellow: this.state.yellow,
+                black: this.state.black,
+                white: this.state.white,
+              }}
+            />
+          ) : (
+            <Redirect to='/' />
+          )}
         </Route>
       </Router>
     );
