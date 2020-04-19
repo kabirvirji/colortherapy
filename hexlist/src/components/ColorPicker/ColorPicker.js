@@ -37,20 +37,16 @@ export default class ColorPicker extends React.Component {
       }
     }
   }
-  handlePick(e, color) {
-    // TODO
-    // add color to "chosen rgb colors" part of state
-    // will need to pass chosen color to bubble component?
-    // will need to pass this.state.chosenRGB and colorCalibration to getValence function
+  handlePick(color) {
     if (!this.state.chosenRGB.includes(color)) {
-      // prevents duplicate clicks adding to array
       this.setState((prevState) => ({
         chosenRGB: prevState.chosenRGB.concat([color]),
       }));
-      console.log(this.state.chosenRGB, color);
+    } else {
+      this.setState((prevState) => ({
+        chosenRGB: prevState.chosenRGB.splice(prevState.chosenRGB.indexOf([color]), 1)
+      }));
     }
-    // now the color square dissapears onclick, need to move to bubble component
-    // when clicked from bubble, the color square goes back to the grid in its original position
   }
   fetchData() {
     // creates new squares and appends to usedRGB for infinite scroll
@@ -93,14 +89,13 @@ export default class ColorPicker extends React.Component {
             <Flex flexWrap='wrap' justifyContent='center'>
               {this.state.usedRGB.map((color, index) => {
                 return (
-                  <ColoredSquare color={color} key={index}></ColoredSquare>
+                  <ColoredSquare color={color} key={index} onPress={() => this.handlePick(color)}></ColoredSquare>
                 );
               })}
             </Flex>
-            <Bubble></Bubble>
+            {/* <Bubble></Bubble> */}
           </div>
         </InfiniteScroll>
-        
         {/* can pass in this.state.chosenRGB as colorArr */}
         <GeneratePlaylistImage colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
       </div>
