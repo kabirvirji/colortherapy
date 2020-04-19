@@ -4,7 +4,7 @@ import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import ColoredSquare from "../ColoredSquare/ColoredSquare";
 import Bubble from "../Bubble/Bubble";
 import InfiniteScroll from "react-infinite-scroll-component";
-import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage"
+import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage";
 
 import "./ColorPicker.css";
 import { Redirect } from "react-router-dom";
@@ -19,7 +19,7 @@ export default class ColorPicker extends React.Component {
       numberOfSquares: 60,
       refreshRate: 10, // squares per scroll
     };
-    // this.handlePick = this.handlePick.bind(this)
+    this.handlePick = this.handlePick.bind(this);
   }
   randomRGB() {
     // returns unique rgb color
@@ -43,11 +43,20 @@ export default class ColorPicker extends React.Component {
         chosenRGB: prevState.chosenRGB.concat([color]),
       }));
     } else {
-      this.setState((prevState) => ({
-        chosenRGB: prevState.chosenRGB.splice(prevState.chosenRGB.indexOf([color]), 1)
-      }));
+      this.setState((state) => {
+        const newState = [...state.chosenRGB];
+        newState.splice(newState.indexOf(color), 1);
+        console.log({ chosenRGB: newState }, "to be merged");
+
+        return { chosenRGB: newState };
+      });
     }
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState.chosenRGB, this.state.chosenRGB, "updated state");
+  }
+
   fetchData() {
     // creates new squares and appends to usedRGB for infinite scroll
     let freshColors = [];
@@ -72,24 +81,24 @@ export default class ColorPicker extends React.Component {
     this.setState({
       usedRGB: init(), // initilize since we pull squares from this.state.usedRGB in render
     });
-
   }
   render() {
     return (
       <div>
         <HexlistHeader></HexlistHeader>
-        
+
         <InfiniteScroll
           dataLength={this.state.usedRGB.length}
           next={() => this.fetchData()}
           hasMore={true}>
-          
-          <div className='colorContainer' style={{position: 'relative'}}>
-            
+          <div className='colorContainer' style={{ position: "relative" }}>
             <Flex flexWrap='wrap' justifyContent='center'>
               {this.state.usedRGB.map((color, index) => {
                 return (
-                  <ColoredSquare color={color} key={index} onPress={() => this.handlePick(color)}></ColoredSquare>
+                  <ColoredSquare
+                    color={color}
+                    key={index}
+                    onPress={() => this.handlePick(color)}></ColoredSquare>
                 );
               })}
             </Flex>
@@ -97,7 +106,8 @@ export default class ColorPicker extends React.Component {
           </div>
         </InfiniteScroll>
         {/* can pass in this.state.chosenRGB as colorArr */}
-        <GeneratePlaylistImage colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
+        <GeneratePlaylistImage
+          colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
       </div>
     );
   }
