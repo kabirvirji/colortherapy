@@ -139,6 +139,3 @@ export default class Quiz extends React.Component {
     );
   }
 }
-
-//Add some media queries
-//Explain what numbers mean for colors

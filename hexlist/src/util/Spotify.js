@@ -1,7 +1,7 @@
 var spotifyParser = require("spotify-uri");
 // could be cool to add our own art for the spotify playlits cover
 
-export default class Spotify {
+export default class SpotifyAPI {
   constructor(clientId, responseType, redirectUri, scope) {
     this.clientId = clientId;
     this.responseType = responseType;
@@ -47,8 +47,6 @@ export default class Spotify {
   }
   async getRecommendations(
     seedArtists,
-    minEnergy,
-    maxEnergy,
     targetEnergy,
     minValence,
     maxValence,
@@ -57,26 +55,27 @@ export default class Spotify {
     const userToken = this.accessToken;
     const endpoint = "https://api.spotify.com/v1/recommendations?";
     let seed = seedArtists.join();
-    // const url = `${endpoint}seed_artist=${seed}&min_energy=${minEnergy}&max_energy=${maxEnergy}&target_energy=${targetEnergy}&min_valence=${minValence}&max_valence=${maxValence}target_valence=${targetValence}`;
-    const url = `${endpoint}seed_artists=${encodeURI(seed)}`; //This is only for trying things out
-    try {
-      const response = await fetch(url, {
-        headers: {
-          Authorization: "Bearer " + userToken,
-        },
+    const url = `${endpoint}seed_artists=${encodeURI(
+      seed
+    )}&target_energy=${targetEnergy}&target_valence=${targetValence}&min_valence=${minValence}&max_valence=${maxValence}`;
+    const response = await fetch(url, {
+      headers: {
+        Authorization: "Bearer " + userToken,
+      },
+    });
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      jsonResponse.tracks.forEach((element) => {
+        this.recommendations.push(element.uri);
       });
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        jsonResponse.tracks.forEach((element) => {
-          this.recommendations.push(element.uri);
-        });
-      } else {
-        console.log(response.status);
-      }
-    } catch (e) {
-      console.log(e);
+    } else {
+      console.log(response.status);
     }
   }
+  catch(e) {
+    console.log(e);
+  }
+
   async getTopArtists() {
     const userToken = this.accessToken;
     if (userToken) {
