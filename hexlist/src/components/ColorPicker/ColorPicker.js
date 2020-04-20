@@ -5,6 +5,7 @@ import ColoredSquare from "../ColoredSquare/ColoredSquare";
 import Bubble from "../Bubble/Bubble";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage";
+import { calculateValence, getMinMaxAvg } from "./Generate";
 
 import "./ColorPicker.css";
 import { Redirect } from "react-router-dom";
@@ -20,6 +21,9 @@ export default class ColorPicker extends React.Component {
       refreshRate: 10, // squares per scroll
     };
     this.handlePick = this.handlePick.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.randomRGB = this.randomRGB.bind(this);
+    this.handleGenerate = this.handleGenerate.bind(this);
   }
   randomRGB() {
     // returns unique rgb color
@@ -47,8 +51,6 @@ export default class ColorPicker extends React.Component {
         this.setState((state) => {
           const newState = [...state.chosenRGB];
           newState.splice(newState.indexOf(color), 1);
-          console.log({ chosenRGB: newState }, "to be merged");
-
           return { chosenRGB: newState };
         });
       }
@@ -56,11 +58,6 @@ export default class ColorPicker extends React.Component {
     }
     alert("You have already pciked 5 different colors!!");
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.chosenRGB, this.state.chosenRGB, "updated state");
-  }
-
   fetchData() {
     // creates new squares and appends to usedRGB for infinite scroll
     let freshColors = [];
@@ -86,11 +83,35 @@ export default class ColorPicker extends React.Component {
       usedRGB: init(), // initilize since we pull squares from this.state.usedRGB in render
     });
   }
+  async componentDidMount() {
+    await this.props.Spotify.getTopArtists();
+  }
+
+  async handleGenerate() {
+    const valences = calculateValence(this.state.chosenRGB, this.props.colors);
+    const [minValence, maxValence, targetValence] = getMinMaxAvg(valences);
+    const seedArtists = this.props.Spotify.topArtists.slice(0, 5);
+    const targetEnergy = this.props.energy;
+    await this.props.Spotify.getRecommendations(
+      seedArtists,
+      targetEnergy,
+      minValence,
+      maxValence,
+      targetValence
+    );
+    await this.props.Spotify.createPlaylist();
+    await this.props.Spotify.populatePlaylist();
+  }
+
   render() {
     return (
       <div>
         <HexlistHeader></HexlistHeader>
-
+        {this.state.chosenRGB.length > 4 ? (
+          <button onClick={this.handleGenerate}>Generate</button>
+        ) : (
+          <div></div>
+        )}
         <InfiniteScroll
           dataLength={this.state.usedRGB.length}
           next={() => this.fetchData()}
