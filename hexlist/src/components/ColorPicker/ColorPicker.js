@@ -38,19 +38,23 @@ export default class ColorPicker extends React.Component {
     }
   }
   handlePick(color) {
-    if (!this.state.chosenRGB.includes(color)) {
-      this.setState((prevState) => ({
-        chosenRGB: prevState.chosenRGB.concat([color]),
-      }));
-    } else {
-      this.setState((state) => {
-        const newState = [...state.chosenRGB];
-        newState.splice(newState.indexOf(color), 1);
-        console.log({ chosenRGB: newState }, "to be merged");
+    if (this.state.chosenRGB.length < 5) {
+      if (!this.state.chosenRGB.includes(color)) {
+        this.setState((prevState) => ({
+          chosenRGB: prevState.chosenRGB.concat([color]),
+        }));
+      } else {
+        this.setState((state) => {
+          const newState = [...state.chosenRGB];
+          newState.splice(newState.indexOf(color), 1);
+          console.log({ chosenRGB: newState }, "to be merged");
 
-        return { chosenRGB: newState };
-      });
+          return { chosenRGB: newState };
+        });
+      }
+      return true;
     }
+    alert("You have already pciked 5 different colors!!");
   }
 
   componentDidUpdate(prevProps, prevState) {

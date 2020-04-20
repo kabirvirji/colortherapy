@@ -10,10 +10,12 @@ class ColoredSquare extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.props.onPress();
-    this.setState((prevState) => ({
-      clicked: !prevState.clicked,
-    }));
+    const maxColors = this.props.onPress();
+    if (maxColors) {
+      this.setState((prevState) => ({
+        clicked: !prevState.clicked,
+      }));
+    }
   }
   // need to remove onclick
   render() {
