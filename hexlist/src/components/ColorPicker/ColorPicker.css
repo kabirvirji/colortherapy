@@ -1,35 +1,79 @@
 .colorContainer {
-    margin: 0em 7em 7em 7em;
+  margin: 0em 7em 7em 7em;
 }
 
-@media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 812px) 
-    and (-webkit-min-device-pixel-ratio: 3) { 
-    .square {
-        position: relative;
-        /*flex-basis: calc(33.333% - 10px);*/
-        flex-basis: 67px;
-        margin: 15px;
-        box-sizing: border-box;
-        }
-    .colorContainer {
-        margin: 0.5em;
-    }
+.toomanycolors {
+  position: fixed;
 }
 
-@media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 812px) 
-    and (-webkit-min-device-pixel-ratio: 2) { 
-        .square {
-            position: relative;
-            /*flex-basis: calc(33.333% - 10px);*/
-            flex-basis: 67px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
-        .colorContainer {
-            margin: 0.5em;
-        }
+.generate-container {
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.blur {
+  pointer-events: none;
+  animation: blur 2s linear forwards;
+}
+
+.opaque {
+  animation: opacify 1s linear;
+  z-index: 2;
+}
+
+.backToGrid {
+  animation: unblur 1s linear;
+}
+
+@keyframes unblur {
+  from {
+    filter: blur(1rem);
+  }
+  to {
+    filter: blur(0rem);
+  }
+}
+@keyframes opacify {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes blur {
+  0% {
+    filter: blur(0rem);
+  }
+  100% {
+    filter: blur(1rem);
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .square {
+    position: relative;
+    /*flex-basis: calc(33.333% - 10px);*/
+    flex-basis: 67px;
+    margin: 15px;
+    box-sizing: border-box;
+  }
+  .colorContainer {
+    margin: 0.5em;
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
+  .square {
+    position: relative;
+    /*flex-basis: calc(33.333% - 10px);*/
+    flex-basis: 67px;
+    margin: 15px;
+    box-sizing: border-box;
+  }
+  .colorContainer {
+    margin: 0.5em;
+  }
 }

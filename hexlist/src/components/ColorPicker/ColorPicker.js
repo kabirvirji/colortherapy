@@ -6,9 +6,9 @@ import Bubble from "../Bubble/Bubble";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage";
 import { calculateValence, getMinMaxAvg } from "./Generate";
+import TooManyColorsPopUp from "./TooManyColorsPopUp";
 
 import "./ColorPicker.css";
-import { Redirect } from "react-router-dom";
 
 export default class ColorPicker extends React.Component {
   constructor(props) {
@@ -19,11 +19,14 @@ export default class ColorPicker extends React.Component {
       chosenRGB: [], // looks like [rgb(42, 78, 123), ...]
       numberOfSquares: 60,
       refreshRate: 10, // squares per scroll
+      blurGrid: "", //grid class name
+      cardClass: "card",
     };
     this.handlePick = this.handlePick.bind(this);
     this.fetchData = this.fetchData.bind(this);
     this.randomRGB = this.randomRGB.bind(this);
     this.handleGenerate = this.handleGenerate.bind(this);
+    this.handleBackToGrid = this.handleBackToGrid.bind(this);
   }
   randomRGB() {
     // returns unique rgb color
@@ -42,21 +45,26 @@ export default class ColorPicker extends React.Component {
     }
   }
   handlePick(color) {
-    if (this.state.chosenRGB.length < 5) {
-      if (!this.state.chosenRGB.includes(color)) {
+    if (!this.state.chosenRGB.includes(color)) {
+      if (this.state.chosenRGB.length < 5) {
         this.setState((prevState) => ({
           chosenRGB: prevState.chosenRGB.concat([color]),
         }));
+        return true;
       } else {
-        this.setState((state) => {
-          const newState = [...state.chosenRGB];
-          newState.splice(newState.indexOf(color), 1);
-          return { chosenRGB: newState };
+        this.setState({
+          blurGrid: "blur",
+          cardClass: "toomanycolors card active",
         });
       }
+    } else {
+      this.setState((state) => {
+        const newState = [...state.chosenRGB];
+        newState.splice(newState.indexOf(color), 1);
+        return { chosenRGB: newState };
+      });
       return true;
     }
-    alert("You have already pciked 5 different colors!!");
   }
   fetchData() {
     // creates new squares and appends to usedRGB for infinite scroll
@@ -103,36 +111,50 @@ export default class ColorPicker extends React.Component {
     await this.props.Spotify.populatePlaylist();
   }
 
+  handleBackToGrid() {
+    this.setState({
+      blurGrid: "backToGrid",
+      cardClass: "toomanycolors card opaque",
+    });
+  }
+
   render() {
     return (
       <div>
-        <HexlistHeader></HexlistHeader>
-        {this.state.chosenRGB.length > 4 ? (
-          <button onClick={this.handleGenerate}>Generate</button>
-        ) : (
-          <div></div>
-        )}
-        <InfiniteScroll
-          dataLength={this.state.usedRGB.length}
-          next={() => this.fetchData()}
-          hasMore={true}>
-          <div className='colorContainer' style={{ position: "relative" }}>
-            <Flex flexWrap='wrap' justifyContent='center'>
-              {this.state.usedRGB.map((color, index) => {
-                return (
-                  <ColoredSquare
-                    color={color}
-                    key={index}
-                    onPress={() => this.handlePick(color)}></ColoredSquare>
-                );
-              })}
-            </Flex>
-            {/* <Bubble></Bubble> */}
-          </div>
-        </InfiniteScroll>
-        {/* can pass in this.state.chosenRGB as colorArr */}
-        <GeneratePlaylistImage
-          colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
+        <TooManyColorsPopUp
+          handleBackToGrid={this.handleBackToGrid}
+          handleGenerate={this.handleGenerate}
+          cardClass={this.state.cardClass}
+        />
+        <div className={this.state.blurGrid}>
+          <HexlistHeader></HexlistHeader>
+          {this.state.chosenRGB.length > 4 ? (
+            <button onClick={this.handleGenerate}>Generate</button>
+          ) : (
+            <div></div>
+          )}
+          <InfiniteScroll
+            dataLength={this.state.usedRGB.length}
+            next={() => this.fetchData()}
+            hasMore={true}>
+            <div className='colorContainer' style={{ position: "relative" }}>
+              <Flex flexWrap='wrap' justifyContent='center'>
+                {this.state.usedRGB.map((color, index) => {
+                  return (
+                    <ColoredSquare
+                      color={color}
+                      key={index}
+                      onPress={() => this.handlePick(color)}></ColoredSquare>
+                  );
+                })}
+              </Flex>
+              {/* <Bubble></Bubble> */}
+            </div>
+          </InfiniteScroll>
+          {/* can pass in this.state.chosenRGB as colorArr */}
+          <GeneratePlaylistImage
+            colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
+        </div>
       </div>
     );
   }

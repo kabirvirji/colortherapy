@@ -1,7 +1,7 @@
 .card.active {
   pointer-events: all;
   z-index: 1;
-  animation: fadeIn 0.6s ease-in-out both 0.5s;
+  animation: fadeIn 0.6s ease-in-out both 0.3s;
 }
 .card {
   z-index: 0;
@@ -11,17 +11,13 @@
   justify-items: center;
   align-items: center;
   height: 50vh;
-  margin: auto;
+  margin-top: 18.75vh;
   background-color: #f7f1e6;
   box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   position: absolute;
   opacity: 0;
-  top: 0;
-  bottom: 0;
   pointer-events: none;
-  left: 0;
-  right: 0;
   padding-left: 2vw;
   padding-right: 2vw;
 }
@@ -30,7 +26,7 @@
   z-index: 2;
   animation: fadeOut 0.5s ease-in-out both;
 }
-.quizlist {
+.list {
   color: #424b54;
   font-weight: bolder;
   font-size: 1.5vw;
@@ -38,10 +34,12 @@
   line-height: 2rem;
 }
 #container {
+  height: 100%;
+  overflow: hidden;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .range {
@@ -67,12 +65,10 @@ button {
     opacity: 1;
     transform: scale(1);
   }
-  99% {
+  100% {
     opacity: 0;
     transform: scale(1.15);
-  }
-  100% {
-    transform: scale(1);
+    position: absolute;
   }
 }
 
@@ -80,5 +76,9 @@ button {
   p {
     font-size: 14px;
     font-weight: bold;
+  }
+  .card {
+    height: 70vh;
+    margin-top: 12vh;
   }
 }
