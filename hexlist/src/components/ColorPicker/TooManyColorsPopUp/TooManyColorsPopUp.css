@@ -1,0 +1,20 @@
+.too-many-colors {
+  background-color: #0d3b66;
+}
+
+.too-many-colors:hover {
+  background-color: #0a2f52;
+}
+
+#button-container {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 800px) {
+  .too-many-colors {
+    font-size: 10px;
+  }
+}

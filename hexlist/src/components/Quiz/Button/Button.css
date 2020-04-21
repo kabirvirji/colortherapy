@@ -1,5 +1,4 @@
-.quiz {
-  background-color: #8789c0;
+.button {
   border: none;
   color: #f3e8ee;
   padding: 10px;
@@ -12,19 +11,22 @@
   width: 20vw;
 }
 
+.quiz {
+  background-color: #8789c0;
+}
 .quiz:hover {
   background-color: #5c5e86;
 }
 
 @media only screen and (max-width: 600px) {
-  .quiz {
+  .button {
     margin-top: 1.3vh;
     width: 18vw;
   }
 }
 
 @media only screen and (min-width: 1000px) {
-  .quiz {
+  .button {
     width: 200px;
   }
 }

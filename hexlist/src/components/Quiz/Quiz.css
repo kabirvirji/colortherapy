@@ -73,12 +73,21 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
-  p {
+  .list {
     font-size: 14px;
     font-weight: bold;
   }
   .card {
-    height: 70vh;
+    margin-top: 12vh;
+  }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 601px) {
+  .list {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .card {
     margin-top: 12vh;
   }
 }

@@ -6,7 +6,7 @@ import Bubble from "../Bubble/Bubble";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage";
 import { calculateValence, getMinMaxAvg } from "./Generate";
-import TooManyColorsPopUp from "./TooManyColorsPopUp";
+import TooManyColorsPopUp from "./TooManyColorsPopUp/TooManyColorsPopUp";
 
 import "./ColorPicker.css";
 
@@ -20,7 +20,7 @@ export default class ColorPicker extends React.Component {
       numberOfSquares: 60,
       refreshRate: 10, // squares per scroll
       blurGrid: "", //grid class name
-      cardClass: "card",
+      tooManyCardClass: "card",
     };
     this.handlePick = this.handlePick.bind(this);
     this.fetchData = this.fetchData.bind(this);
@@ -54,7 +54,7 @@ export default class ColorPicker extends React.Component {
       } else {
         this.setState({
           blurGrid: "blur",
-          cardClass: "toomanycolors card active",
+          tooManyCardClass: "toomanycolors card active",
         });
       }
     } else {
@@ -109,22 +109,43 @@ export default class ColorPicker extends React.Component {
     );
     await this.props.Spotify.createPlaylist();
     await this.props.Spotify.populatePlaylist();
+    if (this.state.tooManyCardClass.includes("active")) {
+      this.setState({
+        blurGrid: "blur",
+        tooManyCardClass: "toomanycolors card opaque",
+      });
+    } else {
+      this.setState({ blurGrid: "blur" });
+    }
   }
 
   handleBackToGrid() {
     this.setState({
       blurGrid: "backToGrid",
-      cardClass: "toomanycolors card opaque",
+      tooManyCardClass: "toomanycolors card opaque",
     });
   }
 
   render() {
     return (
       <div>
+        {this.props.Spotify.playlistEmbed ? (
+          <div className='test'>
+            <div className='embedded-playlist'>
+              <iframe
+                title='spotify-player'
+                src={this.props.Spotify.playlistEmbed}
+                allowtransparency='true'
+                allow='encrypted-media'></iframe>
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <TooManyColorsPopUp
           handleBackToGrid={this.handleBackToGrid}
           handleGenerate={this.handleGenerate}
-          cardClass={this.state.cardClass}
+          cardClass={this.state.tooManyCardClass}
         />
         <div className={this.state.blurGrid}>
           <HexlistHeader></HexlistHeader>

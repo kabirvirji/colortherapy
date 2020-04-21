@@ -55,9 +55,12 @@ export default class SpotifyAPI {
     const userToken = this.accessToken;
     const endpoint = "https://api.spotify.com/v1/recommendations?";
     let seed = seedArtists.join();
+    // const url = `${endpoint}seed_artists=${encodeURI(
+    // seed
+    // )}&target_energy=${targetEnergy}&target_valence=${targetValence}&min_valence=${minValence}&max_valence=${maxValence}`;
     const url = `${endpoint}seed_artists=${encodeURI(
       seed
-    )}&target_energy=${targetEnergy}&target_valence=${targetValence}&min_valence=${minValence}&max_valence=${maxValence}`;
+    )}&target_energy=${targetEnergy}&target_valence=${targetValence}`;
     const response = await fetch(url, {
       headers: {
         Authorization: "Bearer " + userToken,
@@ -120,6 +123,9 @@ export default class SpotifyAPI {
       if (response.ok) {
         const jsonResponse = await response.json();
         this.playlistId = jsonResponse.id;
+        this.playlistEmbed = `https://open.spotify.com/embed/playlist/${
+          spotifyParser.parse(jsonResponse.uri).id
+        }`;
       } else {
         return response.status;
       }
