@@ -167,7 +167,7 @@ export default class ColorPicker extends React.Component {
               {/* <Bubble></Bubble> */}
               {this.state.chosenRGB.length > 4 ? (
                 <div className="overlay">
-                  <div className="generatePlaylist" onClick={this.handleGenerate}>Generate Playlist</div>
+                  <a><div className="generatePlaylist" onClick={this.handleGenerate}>Generate Playlist</div></a>
                 </div>
               ) : (
                 <div></div>
