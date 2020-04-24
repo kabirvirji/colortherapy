@@ -2,6 +2,26 @@
   margin: 0em 7em 7em 7em;
 }
 
+.generatePlaylist {
+  background-color: #8789c0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #424B54;
+  color: #f3e8ee;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 50px;
+  width: 15vw;
+}
+
+.overlay {
+  position: fixed;
+  bottom: 3em;
+  right: 3em;
+}
+
 .toomanycolors {
   position: fixed;
 }
@@ -92,6 +112,20 @@ iframe {
   .colorContainer {
     margin: 0.5em;
   }
+  .generatePlaylist {
+    background-color: #8789c0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #424B54;
+    color: #f3e8ee;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 50px;
+    width: 200px;
+    margin-right: 40px;
+  }
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -107,5 +141,19 @@ iframe {
   }
   .colorContainer {
     margin: 0.5em;
+  }
+  .generatePlaylist {
+    background-color: #8789c0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #424B54;
+    color: #f3e8ee;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 50px;
+    width: 200px;
+    margin-right: 40px;
   }
 }
