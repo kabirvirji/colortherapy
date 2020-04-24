@@ -2,7 +2,6 @@ import React from "react";
 import Flex from "../Flex/Flex";
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import ColoredSquare from "../ColoredSquare/ColoredSquare";
-import Bubble from "../Bubble/Bubble";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage";
 import { calculateValence, getMinMaxAvg } from "./Generate";
@@ -149,16 +148,12 @@ export default class ColorPicker extends React.Component {
         />
         <div className={this.state.blurGrid}>
           <HexlistHeader></HexlistHeader>
-          {this.state.chosenRGB.length > 4 ? (
-            <button onClick={this.handleGenerate}>Generate</button>
-          ) : (
-            <div></div>
-          )}
+
           <InfiniteScroll
             dataLength={this.state.usedRGB.length}
             next={() => this.fetchData()}
             hasMore={true}>
-            <div className='colorContainer' style={{ position: "relative" }}>
+            <div className='colorContainer' >
               <Flex flexWrap='wrap' justifyContent='center'>
                 {this.state.usedRGB.map((color, index) => {
                   return (
@@ -170,6 +165,13 @@ export default class ColorPicker extends React.Component {
                 })}
               </Flex>
               {/* <Bubble></Bubble> */}
+              {this.state.chosenRGB.length > 4 ? (
+                <div className="overlay">
+                  <a><div className="generatePlaylist" onClick={this.handleGenerate}>Generate Playlist</div></a>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </InfiniteScroll>
           {/* can pass in this.state.chosenRGB as colorArr */}
