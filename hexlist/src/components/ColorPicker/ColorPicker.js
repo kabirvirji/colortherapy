@@ -26,6 +26,7 @@ export default class ColorPicker extends React.Component {
     this.randomRGB = this.randomRGB.bind(this);
     this.handleGenerate = this.handleGenerate.bind(this);
     this.handleBackToGrid = this.handleBackToGrid.bind(this);
+    this.handleGenerateAgain = this.handleGenerateAgain.bind(this);
   }
   randomRGB() {
     // returns unique rgb color
@@ -124,12 +125,19 @@ export default class ColorPicker extends React.Component {
       tooManyCardClass: "toomanycolors card opaque",
     });
   }
-
+  handleGenerateAgain() {
+    this.setState({ chosenRGB: [] });
+  }
   render() {
     return (
       <div>
         {this.props.Spotify.playlistEmbed ? (
-          <div className='test'>
+          <div className='final'>
+            <button
+              className='button back-to-grid'
+              onClick={this.handleGenerateAgain}>
+              Generate another one!
+            </button>
             <div className='embedded-playlist'>
               <iframe
                 title='spotify-player'
@@ -153,7 +161,7 @@ export default class ColorPicker extends React.Component {
             dataLength={this.state.usedRGB.length}
             next={() => this.fetchData()}
             hasMore={true}>
-            <div className='colorContainer' >
+            <div className='colorContainer'>
               <Flex flexWrap='wrap' justifyContent='center'>
                 {this.state.usedRGB.map((color, index) => {
                   return (
@@ -163,15 +171,20 @@ export default class ColorPicker extends React.Component {
                       onPress={() => this.handlePick(color)}></ColoredSquare>
                   );
                 })}
+
+                {/* <Bubble></Bubble> */}
+                {this.state.chosenRGB.length > 4 ? (
+                  <div className='overlay'>
+                    <button
+                      onClick={this.handleGenerate}
+                      className='button generate'>
+                      Generate
+                    </button>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
               </Flex>
-              {/* <Bubble></Bubble> */}
-              {this.state.chosenRGB.length > 4 ? (
-                <div className="overlay">
-                  <a><div className="generatePlaylist" onClick={this.handleGenerate}>Generate Playlist</div></a>
-                </div>
-              ) : (
-                <div></div>
-              )}
             </div>
           </InfiniteScroll>
           {/* can pass in this.state.chosenRGB as colorArr */}

@@ -3,10 +3,10 @@
 }
 
 .generatePlaylist {
-  background-color: #424B54;
+  background-color: #424b54;
   border-style: solid;
   border-width: 1px;
-  border-color: #424B54;
+  border-color: #424b54;
   color: #f3e8ee;
   padding: 20px;
   text-align: center;
@@ -18,13 +18,28 @@
 }
 .generatePlaylist:hover {
   background-color: #8789c0;
-  border-color: #424B54;
+  border-color: #424b54;
 }
 
+.button.generate {
+  background-color: #0d3b66;
+  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.7);
+  animation: fadeIn 2s;
+  height: 8vh;
+  margin: auto;
+  cursor: pointer;
+}
+.button.generate:hover {
+  background-color: #0a2f52;
+}
 .overlay {
   position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   bottom: 3em;
-  right: 3em;
+
+  /* right: 3em; */
 }
 
 .toomanycolors {
@@ -48,11 +63,23 @@
   z-index: 2;
 }
 
-.test {
+.final {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.button.back-to-grid {
+  background-color: aquamarine;
+  z-index: 2;
+  position: fixed;
+  top: 3vh;
+  width: 40vw;
+}
+
+button.back-to-grid:hover {
+  background-color: rgb(42, 255, 184);
 }
 
 .embedded-playlist {
@@ -121,7 +148,7 @@ iframe {
     background-color: #8789c0;
     border-style: solid;
     border-width: 1px;
-    border-color: #424B54;
+    border-color: #424b54;
     color: #f3e8ee;
     padding: 5px;
     text-align: center;
@@ -148,11 +175,17 @@ iframe {
   .colorContainer {
     margin: 0.5em;
   }
+  .button.generate {
+    width: 50%;
+  }
+  .button.back-to-grid {
+    width: 70vw;
+  }
   .generatePlaylist {
     background-color: #8789c0;
     border-style: solid;
     border-width: 1px;
-    border-color: #424B54;
+    border-color: #424b54;
     color: #f3e8ee;
     padding: 5px;
     text-align: center;
