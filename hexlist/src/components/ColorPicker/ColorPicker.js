@@ -77,6 +77,30 @@ export default class ColorPicker extends React.Component {
       }));
     }, 1500);
   }
+  generatePlaylistImageURL() {
+    let rgb = this.state.chosenRGB.map(x => x.replace(/[^\d,]/g, '').split(','))
+    const canvas = this.refs.canvas
+    const ctx = canvas.getContext("2d")
+    let imgData = ctx.createImageData(300, 300);
+    let imgIndex = 0
+    for (let j = 0; j < rgb.length; j++) {
+        let r = parseInt(rgb[j][0])
+        let g = parseInt(rgb[j][1])
+        let b = parseInt(rgb[j][2])
+        let currIndex = Math.floor(imgData.data.length * (j + 1) / rgb.length)
+        for (imgIndex; imgIndex < currIndex; imgIndex += 4) {
+            imgData.data[imgIndex+0] = r;
+            imgData.data[imgIndex+1] = g;
+            imgData.data[imgIndex+2] = b;
+            imgData.data[imgIndex+3] = 255; // visibility
+        }
+        imgIndex = currIndex
+    }
+    ctx.putImageData(imgData, 0, 0);
+    let imgBase64 = canvas.toDataURL("image/jpeg");
+    console.log(imgBase64)
+    return imgBase64
+  }
   UNSAFE_componentWillMount() {
     const init = () => {
       // creates the initial squares
@@ -99,6 +123,7 @@ export default class ColorPicker extends React.Component {
     const [minValence, maxValence, targetValence] = getMinMaxAvg(valences);
     const seedArtists = this.props.Spotify.topArtists.slice(0, 5);
     const targetEnergy = this.props.energy;
+    const playlistImage = this.generatePlaylistImageURL();
     await this.props.Spotify.getRecommendations(
       seedArtists,
       targetEnergy,
@@ -108,6 +133,7 @@ export default class ColorPicker extends React.Component {
     );
     await this.props.Spotify.createPlaylist();
     await this.props.Spotify.populatePlaylist();
+    await this.props.Spotify.updatePlaylistImage(playlistImage);
     if (this.state.tooManyCardClass.includes("active")) {
       this.setState({
         blurGrid: "blur",
@@ -168,15 +194,13 @@ export default class ColorPicker extends React.Component {
               {this.state.chosenRGB.length > 4 ? (
                 <div className="overlay">
                   <a><div className="generatePlaylist" onClick={this.handleGenerate}>Generate Playlist</div></a>
+                  <canvas ref="canvas" width={300} height={300}></canvas>
                 </div>
               ) : (
                 <div></div>
               )}
             </div>
           </InfiniteScroll>
-          {/* can pass in this.state.chosenRGB as colorArr */}
-          <GeneratePlaylistImage
-            colorArr={this.state.usedRGB.slice(1, 4)}></GeneratePlaylistImage>
         </div>
       </div>
     );
