@@ -16,13 +16,16 @@
   width: 15vw;
   animation: fadeIn 0.4s ease-in-out both 0.3s;
 }
+canvas {
+  display: none;
+}
 .generatePlaylist:hover {
   background-color: #8789c0;
   border-color: #424b54;
 }
 
 .button.generate {
-  background-color: #0d3b66;
+  background-color: #8789c0;
   box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.7);
   animation: fadeIn 2s;
   height: 8vh;
@@ -30,7 +33,7 @@
   cursor: pointer;
 }
 .button.generate:hover {
-  background-color: #0a2f52;
+  background-color: #5c5e86;
 }
 .overlay {
   position: fixed;
@@ -71,7 +74,7 @@
 }
 
 .button.back-to-grid {
-  background-color: aquamarine;
+  background-color: #8789c0;
   z-index: 2;
   position: fixed;
   top: 3vh;
@@ -79,7 +82,7 @@
 }
 
 button.back-to-grid:hover {
-  background-color: rgb(42, 255, 184);
+  background-color: #5c5e86;
 }
 
 .embedded-playlist {

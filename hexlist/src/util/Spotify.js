@@ -157,6 +157,7 @@ export default class SpotifyAPI {
     } catch (e) {}
   }
   async updatePlaylistImage(base64) {
+    console.log(this.playlistId, "playlistID");
     const url = `https://api.spotify.com/v1/playlists/${this.playlistId}/images`;
     try {
       console.log(this.accessToken, base64);
@@ -164,16 +165,14 @@ export default class SpotifyAPI {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
           "Content-Type": "image/jpeg",
-          Accept: "application/json",
+          // Accept: "application/json",
         },
         method: "PUT",
         // I think the 400 error is because something is wrong with the format of the body
         // I don't think the key is "data" it might be "image" or something else not sure
         // Maybe we need to do something to the base64 string before we send it
         // https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
-        body: JSON.stringify({
-          data: base64,
-        }),
+        body: base64,
       });
       if (response.ok) {
         const jsonResponse = await response.json();

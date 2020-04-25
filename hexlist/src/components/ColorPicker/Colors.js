@@ -48,7 +48,7 @@ export default class Colour {
    */
   static HEX2RGBA(hex) {
     let c;
-    if (hex.charAt(0) == "#") {
+    if (hex.charAt(0) === "#") {
       c = hex.substring(1).split("");
     }
     if (c.length > 6 || c.length < 3) {
@@ -56,7 +56,7 @@ export default class Colour {
         `HEX colour must be 3 or 6 values. You provided it ${c.length}`
       );
     }
-    if (c.length == 3) {
+    if (c.length === 3) {
       c = [c[0], c[0], c[1], c[1], c[2], c[2]];
     }
     c = "0x" + c.join("");

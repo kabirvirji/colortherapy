@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./TitleText.css";
-import Flex from "../Flex/Flex";
 
 class TitleText extends Component {
   render() {

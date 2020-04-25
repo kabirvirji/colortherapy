@@ -3,7 +3,6 @@ import Flex from "../Flex/Flex";
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import ColoredSquare from "../ColoredSquare/ColoredSquare";
 import InfiniteScroll from "react-infinite-scroll-component";
-import GeneratePlaylistImage from "../GeneratePlaylistImage/GeneratePlaylistImage";
 import { calculateValence, getMinMaxAvg } from "./Generate";
 import TooManyColorsPopUp from "./TooManyColorsPopUp/TooManyColorsPopUp";
 
@@ -101,7 +100,7 @@ export default class ColorPicker extends React.Component {
     }
     ctx.putImageData(imgData, 0, 0);
     let imgBase64 = canvas.toDataURL("image/jpeg");
-    console.log(imgBase64);
+    console.log(imgBase64, "image");
     return imgBase64;
   }
   UNSAFE_componentWillMount() {
@@ -212,6 +211,7 @@ export default class ColorPicker extends React.Component {
                       className='button generate'>
                       Generate
                     </button>
+                    <canvas ref='canvas' width={300} height={300}></canvas>
                   </div>
                 ) : (
                   <div></div>

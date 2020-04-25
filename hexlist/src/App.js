@@ -32,22 +32,7 @@ class App extends Component {
   async didMountQuiz() {
     Spotify.getToken();
     await Spotify.getUserInfo();
-    // await
-    // if you run the commented lines then you will generate a playlist on your spotify!
-    // await SpotifyInst.getRecommendations(
-    //   [SpotifyInst.topArtists[0], SpotifyInst.topArtists[1]],
-    //   0,
-    //   0,
-    //   0,
-    //   0,
-    //   0,
-    //   0
-    // );
-    // await SpotifyInst.createPlaylist();
-    // await SpotifyInst.populatePlaylist();
-
     if (Spotify.userInfo) {
-      console.log(Spotify.userInfo, "userinfo");
       this.setState({
         LOGIN: true,
       });
@@ -68,20 +53,24 @@ class App extends Component {
           <Login SpotifyUrl={Spotify.url} />
         </Route>
         <Route path='/quiz'>
-          <Quiz
-            didMount={this.didMountQuiz}
-            login={this.state.LOGIN}
-            onChange={this.handleChangeSlider}
-            value={{
-              energy: this.state.energy,
-              red: this.state.red,
-              green: this.state.green,
-              blue: this.state.blue,
-              yellow: this.state.yellow,
-              white: this.state.white,
-              black: this.state.black,
-            }}
-          />
+          {window.location.href.includes("error=access_denied") ? (
+            <Redirect to='/' />
+          ) : (
+            <Quiz
+              didMount={this.didMountQuiz}
+              login={this.state.LOGIN}
+              onChange={this.handleChangeSlider}
+              value={{
+                energy: this.state.energy,
+                red: this.state.red,
+                green: this.state.green,
+                blue: this.state.blue,
+                yellow: this.state.yellow,
+                white: this.state.white,
+                black: this.state.black,
+              }}
+            />
+          )}
         </Route>
         <Route path='/colorpicker'>
           {this.state.LOGIN ? (

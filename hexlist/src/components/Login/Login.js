@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import HexlistHeader from "../HexlistHeader/HexlistHeader";
 import TutorialChecklist from "../TutorialChecklist/TutorialChecklist";
 import TitleText from "../TitleText/TitleText";
-import Flex from "../Flex/Flex";
 import SpotifyButton from "../SpotifyButton/SpotifyButton";
 import ImageGif from "../ImageGif/ImageGif";
 import "./Login.css";
-import { Spotify } from "../../util/Spotify";
 
 export default class Login extends Component {
   componentDidMount() {
