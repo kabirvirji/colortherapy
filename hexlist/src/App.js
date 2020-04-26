@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      LOGIN: true,
+      LOGIN: false,
       energy: 0.5,
       red: 0.5,
       green: 0.5,
