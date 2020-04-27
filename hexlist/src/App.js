@@ -35,6 +35,7 @@ class App extends Component {
     if (Spotify.userInfo) {
       this.setState({
         LOGIN: true,
+        firstName: Spotify.userInfo.display_name.split(' ')[0]
       });
     }
   }
@@ -57,6 +58,8 @@ class App extends Component {
             <Redirect to='/' />
           ) : (
             <Quiz
+              Spotify={Spotify}
+              firstName={this.state.firstName}
               didMount={this.didMountQuiz}
               login={this.state.LOGIN}
               onChange={this.handleChangeSlider}

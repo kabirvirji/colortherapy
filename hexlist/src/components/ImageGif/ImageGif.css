@@ -1,7 +1,8 @@
 .media1 {
   background-color: "#424B54";
-  height: 80vh;
-  margin-right: 2em;
+  height: 150%;
+  width: 150%;
+  padding: 1em;
 }
 
 img {

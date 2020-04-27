@@ -125,7 +125,7 @@ export default class ColorPicker extends React.Component {
     const [minValence, maxValence, targetValence] = getMinMaxAvg(valences);
     const seedArtists = this.props.Spotify.topArtists.slice(0, 5);
     const targetEnergy = this.props.energy;
-    // const playlistImage = this.generatePlaylistImageURL();
+    const playlistImage = this.generatePlaylistImageURL();
     await this.props.Spotify.getRecommendations(
       seedArtists,
       targetEnergy,
@@ -135,7 +135,7 @@ export default class ColorPicker extends React.Component {
     );
     await this.props.Spotify.createPlaylist();
     await this.props.Spotify.populatePlaylist();
-    // await this.props.Spotify.updatePlaylistImage(playlistImage);
+    await this.props.Spotify.updatePlaylistImage(playlistImage);
     if (this.state.tooManyCardClass.includes("active")) {
       this.setState({
         blurGrid: "blur",
@@ -165,7 +165,7 @@ export default class ColorPicker extends React.Component {
             <button
               className='button back-to-grid'
               onClick={this.handleGenerateAgain}>
-              Generate another one!
+              Generate Another Playlist
             </button>
             <div className='embedded-playlist'>
               <iframe
@@ -184,8 +184,9 @@ export default class ColorPicker extends React.Component {
           cardClass={this.state.tooManyCardClass}
         />
         <div className={this.state.blurGrid}>
-          <HexlistHeader></HexlistHeader>
-
+          <a href="/" style={{textDecoration: 'none'}}>
+            <HexlistHeader></HexlistHeader>
+          </a>
           <InfiniteScroll
             dataLength={this.state.usedRGB.length}
             next={() => this.fetchData()}
@@ -209,7 +210,7 @@ export default class ColorPicker extends React.Component {
                     <button
                       onClick={this.handleGenerate}
                       className='button generate'>
-                      Generate
+                      Generate Playlist
                     </button>
                     <canvas ref='canvas' width={300} height={300}></canvas>
                   </div>
