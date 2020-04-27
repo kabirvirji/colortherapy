@@ -10,7 +10,7 @@ export default class Range extends React.Component {
         <input
           type='range'
           min='0.01'
-          max='0.99'
+          max='1.00'
           step='0.0001'
           value={this.props.value}
           onChange={this.props.onChange}

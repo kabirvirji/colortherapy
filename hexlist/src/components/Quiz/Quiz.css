@@ -21,7 +21,6 @@
   padding-left: 2vw;
   padding-right: 2vw;
 }
-
 .card.inactive {
   z-index: 2;
   animation: fadeOut 0.5s ease-in-out both;

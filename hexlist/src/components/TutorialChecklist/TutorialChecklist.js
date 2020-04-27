@@ -12,7 +12,7 @@ class TutorialChecklist extends Component {
             <strong>1)</strong> Take our unique color quiz
           </p>
           <p className='checklist'>
-            <strong>2)</strong> Choose your colors for today
+            <strong>2)</strong> Choose colors based on how you feel
           </p>
           <p className='checklist'>
             <strong>3)</strong> Generate a personalized playlist

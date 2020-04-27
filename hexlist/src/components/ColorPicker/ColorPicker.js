@@ -165,7 +165,7 @@ export default class ColorPicker extends React.Component {
             <button
               className='button back-to-grid'
               onClick={this.handleGenerateAgain}>
-              Generate another one!
+              Generate Another Playlist
             </button>
             <div className='embedded-playlist'>
               <iframe
@@ -184,8 +184,9 @@ export default class ColorPicker extends React.Component {
           cardClass={this.state.tooManyCardClass}
         />
         <div className={this.state.blurGrid}>
-          <HexlistHeader></HexlistHeader>
-
+          <a href="/" style={{textDecoration: 'none'}}>
+            <HexlistHeader></HexlistHeader>
+          </a>
           <InfiniteScroll
             dataLength={this.state.usedRGB.length}
             next={() => this.fetchData()}
@@ -209,7 +210,7 @@ export default class ColorPicker extends React.Component {
                     <button
                       onClick={this.handleGenerate}
                       className='button generate'>
-                      Generate
+                      Generate Playlist
                     </button>
                     <canvas ref='canvas' width={300} height={300}></canvas>
                   </div>
