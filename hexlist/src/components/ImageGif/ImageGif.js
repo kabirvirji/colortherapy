@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ImageGif.css";
-import placeholder from "./700.png";
+import placeholder from "../../images/nineExample.gif";
 
 class ImageGif extends Component {
   render() {

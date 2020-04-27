@@ -14,7 +14,7 @@ function numberToWord(number) {
   if (number >= 0.8 && number < 0.9) {
     return (
       <span className='emoji' role='img'>
-        &#128526;
+        😁
       </span>
     );
   } else if (number >= 0.6 && number < 0.8) {
@@ -44,7 +44,7 @@ function numberToWord(number) {
   } else if (number >= 0 && number < 0.1) {
     return (
       <span className='emoji' role='img'>
-        &#128534;
+        😢
       </span>
     );
   }
@@ -64,7 +64,6 @@ export default class ColorQuestion extends React.Component {
             onChange={this.props.onChange}
             id={this.props.id}
             value={this.props.value}
-            // min and max text can also be emojis
             minText={"sad"}
             maxText={"happy"}
           />
