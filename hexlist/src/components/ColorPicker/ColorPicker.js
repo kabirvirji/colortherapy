@@ -125,7 +125,7 @@ export default class ColorPicker extends React.Component {
     const [minValence, maxValence, targetValence] = getMinMaxAvg(valences);
     const seedArtists = this.props.Spotify.topArtists.slice(0, 5);
     const targetEnergy = this.props.energy;
-    // const playlistImage = this.generatePlaylistImageURL();
+    const playlistImage = this.generatePlaylistImageURL();
     await this.props.Spotify.getRecommendations(
       seedArtists,
       targetEnergy,
@@ -135,7 +135,7 @@ export default class ColorPicker extends React.Component {
     );
     await this.props.Spotify.createPlaylist();
     await this.props.Spotify.populatePlaylist();
-    // await this.props.Spotify.updatePlaylistImage(playlistImage);
+    await this.props.Spotify.updatePlaylistImage(playlistImage);
     if (this.state.tooManyCardClass.includes("active")) {
       this.setState({
         blurGrid: "blur",

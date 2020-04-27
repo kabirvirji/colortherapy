@@ -172,7 +172,7 @@ export default class SpotifyAPI {
         // I don't think the key is "data" it might be "image" or something else not sure
         // Maybe we need to do something to the base64 string before we send it
         // https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
-        body: base64,
+        body: base64.replace(/^data:image\/jpeg;base64,/, ''),
       });
       if (response.ok) {
         const jsonResponse = await response.json();
