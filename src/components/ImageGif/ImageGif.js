@@ -7,7 +7,7 @@ class ImageGif extends Component {
     return (
       <div>
         <div className='media1'>
-          <img src={placeholder} alt='placeholder for now'></img>
+          {/* <img src={placeholder} alt='placeholder for now'></img> */}
         </div>
       </div>
     );

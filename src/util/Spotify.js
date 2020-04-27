@@ -72,8 +72,6 @@ export default class SpotifyAPI {
       jsonResponse.tracks.forEach((element) => {
         this.recommendations.push(element.uri);
       });
-    } else {
-      console.log(response.status);
     }
   }
   catch(e) {
@@ -150,17 +148,14 @@ export default class SpotifyAPI {
       });
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
       } else {
         return response.status;
       }
     } catch (e) {}
   }
   async updatePlaylistImage(base64) {
-    console.log(this.playlistId, "playlistID");
     const url = `https://api.spotify.com/v1/playlists/${this.playlistId}/images`;
     try {
-      console.log(this.accessToken, base64);
       const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
@@ -176,7 +171,6 @@ export default class SpotifyAPI {
       });
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
       } else {
         return response.status;
       }

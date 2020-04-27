@@ -101,7 +101,6 @@ export default class ColorPicker extends React.Component {
     }
     ctx.putImageData(imgData, 0, 0);
     let imgBase64 = canvas.toDataURL("image/jpeg");
-    console.log(imgBase64, "image");
     return imgBase64;
   }
   UNSAFE_componentWillMount() {

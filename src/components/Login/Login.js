@@ -8,10 +8,10 @@ import "./Login.css";
 
 export default class Login extends Component {
   componentDidMount() {
-    console.log("just mounted");
+    
   }
   componentWillUnmount() {
-    console.log("login unmounted");
+    
   }
   render() {
     return (

@@ -25,7 +25,6 @@ export default class GeneratePlaylistImage extends React.Component {
         }
         ctx.putImageData(imgData, 0, 0);
         let imgBase64 = canvas.toDataURL("image/jpeg");
-        console.log("POST with this image", imgBase64)
     }
     render() {
         return (
