@@ -19,6 +19,7 @@ export default class ColorPicker extends React.Component {
       refreshRate: 10, // squares per scroll
       blurGrid: "", //grid class name
       tooManyCardClass: "card",
+      generateButtonState: "button generate",
     };
     this.handlePick = this.handlePick.bind(this);
     this.fetchData = this.fetchData.bind(this);
@@ -121,6 +122,7 @@ export default class ColorPicker extends React.Component {
   }
 
   async handleGenerate() {
+    this.setState({ blurGrid: "blur" });
     const valences = calculateValence(this.state.chosenRGB, this.props.colors);
     const [minValence, maxValence, targetValence] = getMinMaxAvg(valences);
     const seedArtists = this.props.Spotify.topArtists.slice(0, 5);
@@ -138,11 +140,8 @@ export default class ColorPicker extends React.Component {
     await this.props.Spotify.updatePlaylistImage(playlistImage);
     if (this.state.tooManyCardClass.includes("active")) {
       this.setState({
-        blurGrid: "blur",
         tooManyCardClass: "toomanycolors card opaque",
       });
-    } else {
-      this.setState({ blurGrid: "blur" });
     }
   }
 
@@ -184,7 +183,7 @@ export default class ColorPicker extends React.Component {
           cardClass={this.state.tooManyCardClass}
         />
         <div className={this.state.blurGrid}>
-          <a href="/" style={{textDecoration: 'none'}}>
+          <a href='/' style={{ textDecoration: "none" }}>
             <HexlistHeader></HexlistHeader>
           </a>
           <InfiniteScroll
@@ -209,7 +208,7 @@ export default class ColorPicker extends React.Component {
                   <div className='overlay'>
                     <button
                       onClick={this.handleGenerate}
-                      className='button generate'>
+                      className={this.state.generateButtonState}>
                       Generate Playlist
                     </button>
                     <canvas ref='canvas' width={300} height={300}></canvas>

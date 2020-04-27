@@ -35,6 +35,9 @@ canvas {
 .button.generate:hover {
   background-color: #5c5e86;
 }
+.button.fadeout {
+  animation: fadeOut 2s;
+}
 .overlay {
   position: fixed;
   width: 100%;
@@ -77,6 +80,7 @@ canvas {
   background-color: #8789c0;
   z-index: 2;
   position: fixed;
+  animation: fadeIn 2.5s;
   top: 3vh;
   width: 40vw;
 }

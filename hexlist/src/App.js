@@ -35,7 +35,7 @@ class App extends Component {
     if (Spotify.userInfo) {
       this.setState({
         LOGIN: true,
-        firstName: Spotify.userInfo.display_name.split(' ')[0]
+        firstName: Spotify.userInfo.display_name.split(" ")[0],
       });
     }
   }
