@@ -143,6 +143,7 @@ export default class ColorPicker extends React.Component {
         tooManyCardClass: "toomanycolors card opaque",
       });
     }
+    this.setState({});
   }
 
   handleBackToGrid() {
