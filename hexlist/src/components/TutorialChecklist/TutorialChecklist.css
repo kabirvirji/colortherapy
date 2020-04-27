@@ -9,7 +9,27 @@
 .checklist {
   color: #424b54;
   padding-left: 0px;
-  font-size: 20px;
-  line-height: 10px;
+  font-size: 30px;
+  line-height: 1em;
   margin-top: 2.5vh;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .checklist {
+    color: #424b54;
+    padding-left: 0px;
+    font-size: 15px;
+    line-height: 1em;
+    margin-top: 2.5vh;
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
+  .checklist {
+    color: #424b54;
+    padding-left: 0px;
+    font-size: 15px;
+    line-height: 1em;
+    margin-top: 2.5vh;
+  }
 }
