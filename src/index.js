@@ -2,13 +2,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-
+import HttpsRedirect from 'react-https-redirect';
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HttpsRedirect>
+      <App />
+    </HttpsRedirect>
   </React.StrictMode>,
   document.getElementById("root")
 );
