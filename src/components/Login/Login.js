@@ -7,24 +7,19 @@ import ImageGif from "../ImageGif/ImageGif";
 import "./Login.css";
 
 export default class Login extends Component {
-  componentDidMount() {
-    
-  }
-  componentWillUnmount() {
-    
-  }
+  componentDidMount() {}
+  componentWillUnmount() {}
   render() {
     return (
-      <div className='container'>
+      <div className='container-login'>
         <HexlistHeader></HexlistHeader>
-        <div className='container major'>
+        <div className='grid-login'>
           <div className='left'>
             <TitleText title='Use color to generate playlists based on your mood'></TitleText>
             <TutorialChecklist></TutorialChecklist>
             <SpotifyButton url={this.props.SpotifyUrl}></SpotifyButton>
           </div>
-
-          <ImageGif></ImageGif>
+          <ImageGif />
         </div>
       </div>
     );

@@ -5,11 +5,9 @@ import "./HexlistHeader.css";
 class HexlistHeaders extends Component {
   render() {
     return (
-      <div>
+      <div className='title'>
         <header>
-          <h1 className='Header-text'>
-            Color Therapy
-          </h1>
+          <h1 className='Header-text'>Color Therapy</h1>
         </header>
       </div>
     );

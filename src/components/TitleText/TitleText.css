@@ -1,27 +1,28 @@
 h2 {
   color: #424b54;
-  font-size: 3.5vw;
+  font-size: 50px;
+  margin-top: 33px;
   text-align: left;
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+@media only screen and (min-width: 375px) and (max-width: 812px) {
   h2 {
     color: #424b54;
-    font-size: 20px;
+    font-size: 30px;
     text-align: left;
   }
   .container {
-    width: 200px;
+    width: 250px;
   }
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (max-width: 374px) {
   h2 {
     color: #424b54;
-    font-size: 20px;
+    font-size: 25px;
     text-align: left;
   }
   .container {
-    width: 200px;
+    width: 250px;
   }
 }

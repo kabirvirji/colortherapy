@@ -1,13 +1,26 @@
-.container {
+.container-login {
   display: grid;
+  grid-template-rows: 10% 90%;
+  height: 90vh;
+  width: 95vw;
+  margin: auto;
 }
 
-.container.major {
+.grid-login {
   grid-template-columns: 1fr 2fr;
+  display: grid;
   justify-items: center;
   align-items: center;
+  height: 100%;
 }
 
 .left {
   min-width: 351px;
+}
+
+@media only screen and (max-width: 850px) {
+  .grid-login {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -8,6 +8,7 @@ import SpotifyAPI from "./util/Spotify";
 const clientId = "4b2644aba9af45e0bf4cef0fd58b7d6c";
 const responseType = "token";
 const redirectUri = "https://colortherapy1.herokuapp.com/quiz";
+// const redirectUri = "http://localhost:3000/quiz";
 const scope =
   "user-read-private playlist-modify-private user-top-read user-read-recently-played ugc-image-upload playlist-modify-public";
 const Spotify = new SpotifyAPI(clientId, responseType, redirectUri, scope);

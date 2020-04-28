@@ -6,11 +6,12 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
+  margin-bottom: 15px;
   border-radius: 50px;
-  width: 300px;
+  width: 225px;
   float: left;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .spotify-button:hover {
