@@ -86,8 +86,9 @@ export default class Quiz extends React.Component {
         <div className={this.state.cardStates[0]}>
           <p className='list'>
             Hey {this.props.firstName} 👋
-            <br></br><br></br> To get started, we'll ask you a 
-            few questions about how you're feeling.
+            <br></br>
+            <br></br> To get started, we'll ask you a few questions about how
+            you're feeling.
           </p>
           <div className='range'></div>
           <Button onClick={this.handleClick}>Next</Button>
@@ -106,11 +107,9 @@ export default class Quiz extends React.Component {
           <Button onClick={this.handleClick}>Next</Button>
         </div>
         <div className={this.state.cardStates[2]}>
-          <p className='list'>
-            How do you feel about the following colors?
-          </p>
+          <p className='list'>Next we'll ask you to rate some colors.</p>
           <div className='range'></div>
-          <Button onClick={this.handleClick}>Next</Button>
+          <Button onClick={this.handleClick}>Rate Colors</Button>
         </div>
         <ColorQuestion
           className={this.state.cardStates[3]}
@@ -155,9 +154,9 @@ export default class Quiz extends React.Component {
           onClick={this.handleClick}
         />
         <div className={this.state.cardStates[9]}>
-        <p className='list'>
-            Thanks {this.props.firstName}!
-            <br></br><br></br>
+          <p className='list'>
+            Thanks {this.props.firstName}!<br></br>
+            <br></br>
             Please select 5 colors from the following grid.
           </p>
           <div className='range'></div>
