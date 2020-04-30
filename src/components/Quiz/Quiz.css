@@ -96,3 +96,19 @@ button {
     position: fixed;
   }
 }
+
+@media only screen and (max-height: 500px) {
+  .card {
+    width: 80vw;
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-height: 350px) {
+  .card {
+    margin-top: initial;
+    padding-bottom: 1em;
+    width: 80vw;
+    height: 80vh;
+  }
+}
