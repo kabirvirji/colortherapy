@@ -1,5 +1,4 @@
 const spotifyParser = require("spotify-uri");
-// could be cool to add our own art for the spotify playlits cover
 
 export default class SpotifyAPI {
   constructor(clientId, responseType, redirectUri, scope) {
@@ -56,9 +55,6 @@ export default class SpotifyAPI {
     const userToken = this.accessToken;
     const endpoint = "https://api.spotify.com/v1/recommendations?";
     let seed = seedArtists.join();
-    // const url = `${endpoint}seed_artists=${encodeURI(
-    // seed
-    // )}&target_energy=${targetEnergy}&target_valence=${targetValence}&min_valence=${minValence}&max_valence=${maxValence}`;
     const url = `${endpoint}seed_artists=${encodeURI(
       seed
     )}&target_energy=${targetEnergy}&target_valence=${targetValence}`;
@@ -160,13 +156,8 @@ export default class SpotifyAPI {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
           "Content-Type": "image/jpeg",
-          // Accept: "application/json",
         },
         method: "PUT",
-        // I think the 400 error is because something is wrong with the format of the body
-        // I don't think the key is "data" it might be "image" or something else not sure
-        // Maybe we need to do something to the base64 string before we send it
-        // https://developer.spotify.com/documentation/web-api/reference/playlists/upload-custom-playlist-cover/
         body: base64.replace(/^data:image\/jpeg;base64,/, ""),
       });
       if (response.ok) {
