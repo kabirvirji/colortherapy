@@ -134,7 +134,7 @@ export default class Quiz extends React.Component {
         />
         <ColorQuestion
           className={this.state.cardStates[6]}
-          id={"green"}
+          id={"#00ff00"}
           onClick={this.handleClick}
           onChange={this.props.onChange}
           value={this.props.value["green"]}
