@@ -172,7 +172,7 @@ export default class ColorPicker extends React.Component {
                 target='_blank'
                 rel='noopener noreferrer'>
                 <button className='button go-to-spotify'>
-                  Take me to Spotify!
+                  Take me to Spotify
                 </button>
               </a>
             </div>
