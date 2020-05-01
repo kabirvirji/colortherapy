@@ -17,3 +17,9 @@
     margin-top: 0;
   }
 }
+
+@media only screen and (max-height: 350px) {
+  .Header-text {
+    font-size: 18px;
+  }
+}

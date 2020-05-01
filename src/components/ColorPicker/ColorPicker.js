@@ -161,11 +161,22 @@ export default class ColorPicker extends React.Component {
       <div>
         {this.props.Spotify.playlistEmbed ? (
           <div className='final'>
-            <button
-              className='button back-to-grid'
-              onClick={this.handleGenerateAgain}>
-              Generate Another Playlist
-            </button>
+            <div className='redirect-buttons'>
+              <button
+                className='button back-to-grid'
+                onClick={this.handleGenerateAgain}>
+                Generate another one
+              </button>
+              <a
+                href={this.props.Spotify.playlistURL}
+                target='_blank'
+                rel='noopener noreferrer'>
+                <button className='button go-to-spotify'>
+                  Take me to Spotify
+                </button>
+              </a>
+            </div>
+
             <div className='embedded-playlist'>
               <iframe
                 title='spotify-player'

@@ -122,6 +122,7 @@ export default class SpotifyAPI {
         this.playlistEmbed = `https://open.spotify.com/embed/playlist/${
           spotifyParser.parse(jsonResponse.uri).id
         }`;
+        this.playlistURL = jsonResponse.external_urls.spotify;
       } else {
         return response.status;
       }

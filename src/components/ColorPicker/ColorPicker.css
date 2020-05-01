@@ -76,16 +76,33 @@ canvas {
   justify-content: center;
 }
 
-.button.back-to-grid {
+.button.back-to-grid,
+.button.go-to-spotify {
   background-color: #8789c0;
   z-index: 2;
   position: fixed;
   animation: fadeIn 2.5s;
+
+  width: 25vw;
+}
+.redirect-buttons {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+.button.back-to-grid {
   top: 3vh;
-  width: 40vw;
+  left: 20vw;
 }
 
-button.back-to-grid:hover {
+.button.go-to-spotify {
+  top: 3vh;
+  right: 20vw;
+}
+
+button.back-to-grid:hover,
+button.go-to-spotify:hover {
   background-color: #5c5e86;
 }
 
@@ -137,7 +154,7 @@ iframe {
   }
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+@media only screen and (min-device-width: 300px) and (max-device-width: 879px) and (-webkit-min-device-pixel-ratio: 3) {
   .square {
     position: relative;
     /*flex-basis: calc(33.333% - 10px);*/
@@ -146,10 +163,14 @@ iframe {
     box-sizing: border-box;
   }
   iframe {
-    width: 70vw;
+    width: 80vw;
   }
   .colorContainer {
     margin: 0.5em;
+  }
+  .button.back-to-grid,
+  .button.go-to-spotify {
+    width: 40vw;
   }
   .generatePlaylist {
     background-color: #8789c0;
@@ -166,9 +187,18 @@ iframe {
     margin-right: 40px;
     animation: fadeIn 0.4s ease-in-out both 0.3s;
   }
+  .button.back-to-grid {
+    top: 3vh;
+    left: 7vw;
+  }
+
+  .button.go-to-spotify {
+    top: 3vh;
+    right: 7vw;
+  }
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-device-width: 300px) and (max-device-width: 879px) and (-webkit-min-device-pixel-ratio: 2) {
   .square {
     position: relative;
     /*flex-basis: calc(33.333% - 10px);*/
@@ -177,7 +207,7 @@ iframe {
     box-sizing: border-box;
   }
   iframe {
-    width: 70vw;
+    width: 80vw;
   }
   .colorContainer {
     margin: 0.5em;
@@ -185,8 +215,9 @@ iframe {
   .button.generate {
     width: 50%;
   }
-  .button.back-to-grid {
-    width: 70vw;
+  .button.back-to-grid,
+  .button.go-to-spotify {
+    width: 40vw;
   }
   .generatePlaylist {
     background-color: #8789c0;
@@ -202,6 +233,15 @@ iframe {
     width: 200px;
     margin-right: 40px;
     animation: fadeIn 0.4s ease-in-out both 0.3s;
+  }
+  .button.back-to-grid {
+    top: 3vh;
+    left: 7vw;
+  }
+
+  .button.go-to-spotify {
+    top: 3vh;
+    right: 7vw;
   }
 }
 
@@ -224,5 +264,22 @@ iframe {
     opacity: 0;
     transform: scale(1.15);
     position: absolute;
+  }
+}
+
+@media only screen and (min-height: 1000px) and (min-width: 880px) {
+  .button.back-to-grid {
+    top: 3vh;
+    left: 20vw;
+    width: 260px;
+  }
+
+  .button.go-to-spotify {
+    top: 3vh;
+    right: 20vw;
+    width: 260px;
+  }
+  iframe {
+    height: 700px;
   }
 }
