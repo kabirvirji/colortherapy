@@ -57,7 +57,7 @@ export default class ColorQuestion extends React.Component {
         <div
           className='color-square'
           id={this.props.id}
-          style={{ background: this.props.id }}></div>
+          style={{ background: this.props.color }}></div>
         <div className='range'>
           {numberToWord(this.props.value)}
           <Range

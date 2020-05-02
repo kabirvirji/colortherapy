@@ -117,6 +117,7 @@ export default class Quiz extends React.Component {
           onClick={this.handleClick}
           onChange={this.props.onChange}
           value={this.props.value["red"]}
+          color={"#FF0000"}
         />
         <ColorQuestion
           className={this.state.cardStates[4]}
@@ -124,6 +125,7 @@ export default class Quiz extends React.Component {
           onClick={this.handleClick}
           onChange={this.props.onChange}
           value={this.props.value["blue"]}
+          color={"#0000FF"}
         />
         <ColorQuestion
           className={this.state.cardStates[5]}
@@ -131,13 +133,15 @@ export default class Quiz extends React.Component {
           onClick={this.handleClick}
           onChange={this.props.onChange}
           value={this.props.value["yellow"]}
+          color={"#FFFF00"}
         />
         <ColorQuestion
           className={this.state.cardStates[6]}
-          id={"#00ff00"}
+          id={"green"}
           onClick={this.handleClick}
           onChange={this.props.onChange}
           value={this.props.value["green"]}
+          color={"#00ff00"}
         />
         <ColorQuestion
           className={this.state.cardStates[7]}
@@ -145,6 +149,7 @@ export default class Quiz extends React.Component {
           onClick={this.handleClick}
           onChange={this.props.onChange}
           value={this.props.value["white"]}
+          color={"#FFFFFF"}
         />
         <ColorQuestion
           className={this.state.cardStates[8]}
@@ -152,6 +157,7 @@ export default class Quiz extends React.Component {
           onChange={this.props.onChange}
           value={this.props.value["black"]}
           onClick={this.handleClick}
+          color={"#000000"}
         />
         <div className={this.state.cardStates[9]}>
           <p className='list'>
