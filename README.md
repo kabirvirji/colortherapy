@@ -1,6 +1,5 @@
 # Color Therapy
 
----
 ## Introduction
 Color Therapy was born out of a love for playlist applications. We generate accurate playlists based on emotions and colors, since good music is always a captivating mood-booster.
 
@@ -14,7 +13,7 @@ With this endpoint in mind, we devised a way to calculate energy and valence usi
 ## Understanding valence and color
 With Color Therapy, the user will be picking colors. However, colors themselves are very subjective - they have no meaning without context. There are some generalizations (red is angry, blue is sad, etc), however one of our goals was to make the generated playlists personal. 
 
-![Text](quizGif.gif)
+![quizGif](src/images/quizGif.gif)
 
 The purpose of the color quiz is to make sense of how the user sees color. The user is asked to rank various colors from sad to happy, internally stored as a value between `0.0` and `1.0`. This value will be the **individual** valence for each "base color" in the quiz. The base colors are as follows:
 - `#FF0000 red` 
@@ -47,7 +46,7 @@ We started by calculating the [color difference](https://en.wikipedia.org/wiki/C
 
 We extended this idea of color difference to multiple colors, and were able to calculate an average/target valence value from a collection of user picked colors. The following is an example:
 
-![valence_example](valenceExample.png)
+![valenceExample](src/images/valenceExample.png)
 
 Remember that each "base color" has its own valence value (from the color quiz). The closest "base color" for the user picked colors `u1`, `u2`, `u4`, and `u5` is `b3`, yellow. However, the closest "base color" for `u3` is `b1`, red. This is because the **delta e** of `u3` and `b1` was the smaller compared to `b3`, and compared to the rest of the base colors. The distinction here is important since we care about **perceived** color difference.
 
@@ -66,7 +65,7 @@ We've successfully calculated valence! This value represents the users emotions,
 
 One highlight is the playlist image art will actually be the colors the user selected.
 
-![colorHeader](data:image/jpeg;base64,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)
+![playlistImg](src/images/playlistImg.jpeg)
 
 Accomplishing this involved creating an invisible `HTML` canvas element, and individually coloring its pixels with RGB values from the chosen colors. Then, converting the image to a `base64` encoded string to make a `PUT` request to Spotify. [There's more details in the code.](https://github.com/kabirvirji/colortherapy/blob/master/src/components/ColorPicker/ColorPicker.js#L81)
 
