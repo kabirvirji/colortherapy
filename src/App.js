@@ -7,8 +7,7 @@ import SpotifyAPI from "./util/Spotify";
 
 const clientId = process.env.REACT_APP_TOKEN;
 const responseType = "token";
-const redirectUri =
-  process.env.REACT_APP_REDIRECT_URI || "https://www.colortherapy.io/quiz";
+const redirectUri = "https://www.colortherapy.io/quiz";
 const scope =
   "user-read-private playlist-modify-private user-top-read user-read-recently-played ugc-image-upload playlist-modify-public";
 const Spotify = new SpotifyAPI(clientId, responseType, redirectUri, scope);
